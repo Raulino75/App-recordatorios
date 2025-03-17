@@ -1,8 +1,10 @@
-package com.mycompany.practica1;
 
+package co.edu.konradlorenz.view;
+
+import co.edu.konradlorenz.model.*;
 import java.util.Scanner;
 
-public class menu1 {
+public class Menu {
 
     public void Mostrarmenu1() {
         String opcion;
@@ -49,4 +51,3 @@ public class menu1 {
         } while (!opcion.equals("3"));
     }
 }
-              
