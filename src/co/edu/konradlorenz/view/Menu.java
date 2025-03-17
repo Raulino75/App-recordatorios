@@ -9,7 +9,7 @@ public class Menu {
     public void Mostrarmenu1() {
         String opcion;
         Scanner sc2 = new Scanner(System.in);
-        Recordatorio recordatorio = new Recordatorio();
+        Funcionamiento recordatorio = new Funcionamiento();
         String opcion2;
         do {
             System.out.println("-------Menu-------");
