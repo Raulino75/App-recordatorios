@@ -14,7 +14,7 @@ public class RecordatorioPremium extends Recordatorio implements TipoCuenta {
     }
     Ventana menu = new Ventana();
     public void Descripcion(){
-        menu.MostrarMensaje("Plan premium incluye promedio de calificaciones en tiempo real y mucho mas");
+        menu.mostrarMensaje("Plan premium incluye promedio de calificaciones en tiempo real y mucho mas");
     }
 
     public void calcularPago(){
@@ -22,6 +22,6 @@ public class RecordatorioPremium extends Recordatorio implements TipoCuenta {
         if (tiempoPlan == 1){
             
         }
-        menu.MostrarMensaje("El costo del plan premium es de "+ pago);
+        menu.mostrarMensaje("El costo del plan premium es de "+ pago);
     }
 }
