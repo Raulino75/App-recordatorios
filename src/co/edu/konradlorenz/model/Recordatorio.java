@@ -67,5 +67,10 @@ public class Recordatorio {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    @Override
+    public String toString() {
+        return "Recordatorio{" + "titulo = " + titulo + ", descripcion = " + descripcion + ", fecha = " + fecha + ", prioridad = " + prioridad + ", ubicacion = " + ubicacion + ", estado = " + estado + '}';
+    }
     
 }
