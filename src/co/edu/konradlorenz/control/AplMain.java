@@ -1,7 +1,11 @@
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 package co.edu.konradlorenz.control;
+
 import co.edu.konradlorenz.view.*;
- import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AplMain {
@@ -17,4 +21,3 @@ public class AplMain {
 
     }
 }
-
