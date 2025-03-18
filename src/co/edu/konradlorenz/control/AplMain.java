@@ -1,7 +1,4 @@
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 package co.edu.konradlorenz.control;
 
 import co.edu.konradlorenz.view.*;
