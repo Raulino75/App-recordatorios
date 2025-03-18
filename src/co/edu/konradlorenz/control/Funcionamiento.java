@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Funcionamiento {
 
     private Scanner sc3 = new Scanner(System.in);
-    Menu menu = new Menu();
+    Ventana menu = new Ventana();
     static List<Recordatorio> ListaRecordatorios = new ArrayList<>();
 
     public void AgregarRecordatorio() {
@@ -33,7 +33,7 @@ public class Funcionamiento {
     public void ModificarRecordatorio() {
         MostrarRecordatorios();
         menu.MostrarMensaje("Ingrese el índice del recordatorio a modificar: ");
-        
+
         int indice = sc3.nextInt();
         sc3.nextLine();
 
@@ -44,7 +44,7 @@ public class Funcionamiento {
             String nuevaDescripcion = sc3.nextLine();
             menu.MostrarMensaje("Ingrese la nueva fecha: ");
             String nuevaFecha = sc3.nextLine();
-           menu.MostrarMensaje("Ingrese la nueva prioridad: ");
+            menu.MostrarMensaje("Ingrese la nueva prioridad: ");
             String nuevaPrioridad = sc3.nextLine();
             menu.MostrarMensaje("Ingrese el nuevo estado: ");
             String nuevoEstado = sc3.nextLine();
@@ -64,4 +64,5 @@ public class Funcionamiento {
 
         ListaRecordatorios.add(nuevoRecordatorio);
     }
+    
 }

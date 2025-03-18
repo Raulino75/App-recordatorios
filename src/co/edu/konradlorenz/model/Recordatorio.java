@@ -1,8 +1,7 @@
-
 package co.edu.konradlorenz.model;
 
-
 public class Recordatorio {
+
     String titulo, descripcion, fecha, prioridad, ubicacion, estado;
 
     public Recordatorio(String titulo, String descripcion, String fecha, String prioridad, String ubicacion) {
@@ -69,5 +68,5 @@ public class Recordatorio {
     public String toString() {
         return "Recordatorio{" + "titulo = " + titulo + ", descripcion = " + descripcion + ", fecha = " + fecha + ", prioridad = " + prioridad + ", ubicacion = " + ubicacion + ", estado = " + estado + '}';
     }
-    
+
 }

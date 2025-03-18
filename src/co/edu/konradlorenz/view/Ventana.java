@@ -1,17 +1,22 @@
-
 package co.edu.konradlorenz.view;
 
 import co.edu.konradlorenz.control.Funcionamiento;
 import co.edu.konradlorenz.model.*;
 import java.util.Scanner;
 
-public class Menu {
-    
+public class Ventana {
+
     public void Mostrarmenu1() {
         String opcion;
         Scanner sc2 = new Scanner(System.in);
         Funcionamiento recordatorio = new Funcionamiento();
+        Scanner sc = new Scanner(System.in);
+
+        MostrarMensaje("Ingrese su nombre");
+        String nombre = sc.nextLine();
+        MostrarMensaje("Bienvenido " + nombre + ", seleccione una opcion");
         String opcion2;
+
         do {
             System.out.println("-------Menu-------");
             System.out.println("1.  Agregar recordatorio");
@@ -54,13 +59,9 @@ public class Menu {
             }
         } while (!opcion.equals("4"));
     }
-    
-    public void MostrarMensaje(String mensaje){
+
+    public void MostrarMensaje(String mensaje) {
         System.out.println(mensaje);
     }
-    
-    
-    
-    
-    
+
 }
