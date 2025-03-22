@@ -7,9 +7,10 @@ import java.util.Scanner;
 public class AplMain {
 
     public static void main(String[] args) {
-        Ventana menu1 = new Ventana();
+        Menu menu = new Menu();
+        menu.Mostrarmenu1();
 
-        menu1.Mostrarmenu1();
+        
 
     }
 }

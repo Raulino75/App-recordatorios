@@ -12,49 +12,49 @@ public class Funcionamiento {
     Ventana menu = new Ventana();
     static List<Recordatorio> ListaRecordatorios = new ArrayList<>();
 
-    public void AgregarRecordatorio() {
-        menu.MostrarMensaje("Ingrese el titulo, descripcion, fecha, priordad y estado del RECORDATORIO");
+    public void agregarRecordatorio() {
+        menu.mostrarMensaje("Ingrese el titulo, descripcion, fecha, priordad y estado del RECORDATORIO");
         crearRecordatorio(sc3.nextLine(), sc3.nextLine(), sc3.nextLine(), sc3.nextLine(), sc3.nextLine());
     }
 
-    public void MostrarRecordatorios() {
+    public void mostrarRecordatorios() {
         if (ListaRecordatorios.isEmpty()) {
-            menu.MostrarMensaje("No hay recordatorios");
+            menu.mostrarMensaje("No hay recordatorios");
         } else {
             System.out.println(ListaRecordatorios);
 
         }
     }
 
-    public void EliminarRecordatorio() {
+    public void eliminarRecordatorio() {
         ListaRecordatorios.remove(sc3.nextInt());
     }
 
-    public void ModificarRecordatorio() {
-        MostrarRecordatorios();
-        menu.MostrarMensaje("Ingrese el índice del recordatorio a modificar: ");
+    public void modificarRecordatorio() {
+        mostrarRecordatorios();
+        menu.mostrarMensaje("Ingrese el índice del recordatorio a modificar: ");
 
         int indice = sc3.nextInt();
         sc3.nextLine();
 
         if (indice >= 0 && indice < ListaRecordatorios.size()) {
-            menu.MostrarMensaje("Ingrese el nuevo título: ");
+            menu.mostrarMensaje("Ingrese el nuevo título: ");
             String nuevoTitulo = sc3.nextLine();
-            menu.MostrarMensaje("Ingrese la nueva descripción: ");
+            menu.mostrarMensaje("Ingrese la nueva descripción: ");
             String nuevaDescripcion = sc3.nextLine();
-            menu.MostrarMensaje("Ingrese la nueva fecha: ");
+            menu.mostrarMensaje("Ingrese la nueva fecha: ");
             String nuevaFecha = sc3.nextLine();
-            menu.MostrarMensaje("Ingrese la nueva prioridad: ");
+            menu.mostrarMensaje("Ingrese la nueva prioridad: ");
             String nuevaPrioridad = sc3.nextLine();
-            menu.MostrarMensaje("Ingrese el nuevo estado: ");
+            menu.mostrarMensaje("Ingrese el nuevo estado: ");
             String nuevoEstado = sc3.nextLine();
 
             Recordatorio nuevoRecordatorio = new Recordatorio(nuevoTitulo, nuevaDescripcion, nuevaFecha, nuevaPrioridad, nuevoEstado);
 
             ListaRecordatorios.set(indice, nuevoRecordatorio);
-            menu.MostrarMensaje("Recordatorio modificado correctamente.");
+            menu.mostrarMensaje("Recordatorio modificado correctamente.");
         } else {
-            menu.MostrarMensaje("Índice inválido.");
+            menu.mostrarMensaje("Índice inválido.");
         }
     }
 
@@ -64,5 +64,5 @@ public class Funcionamiento {
 
         ListaRecordatorios.add(nuevoRecordatorio);
     }
-    
+
 }
