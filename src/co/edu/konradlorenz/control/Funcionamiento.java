@@ -4,7 +4,6 @@ import co.edu.konradlorenz.model.*;
 import co.edu.konradlorenz.view.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Funcionamiento {
 
@@ -16,7 +15,9 @@ public class Funcionamiento {
         if (ListaRecordatorios.isEmpty()) {
             Ventana.mostrarMensaje("No hay recordatorios");
         } else {
-            System.out.println(ListaRecordatorios);
+            for (Recordatorio listaRecordatorio : listaRecordatorios) {
+                menu.mostrarMensaje(listaRecordatorio.toString());
+            }
 
         }
     }
