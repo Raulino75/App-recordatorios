@@ -8,18 +8,13 @@ import java.util.Scanner;
 
 public class Funcionamiento {
 
-    private Scanner sc3 = new Scanner(System.in);
-    Ventana menu = new Ventana();
-    static List<Recordatorio> ListaRecordatorios = new ArrayList<>();
+    
 
-    public void agregarRecordatorio() {
-        menu.mostrarMensaje("Ingrese el titulo, descripcion, fecha, priordad y estado del RECORDATORIO");
-        crearRecordatorio(sc3.nextLine(), sc3.nextLine(), sc3.nextLine(), sc3.nextLine(), sc3.nextLine());
-    }
+    
 
     public void mostrarRecordatorios() {
         if (ListaRecordatorios.isEmpty()) {
-            menu.mostrarMensaje("No hay recordatorios");
+            Ventana.mostrarMensaje("No hay recordatorios");
         } else {
             System.out.println(ListaRecordatorios);
 
@@ -27,42 +22,37 @@ public class Funcionamiento {
     }
 
     public void eliminarRecordatorio() {
-        ListaRecordatorios.remove(sc3.nextInt());
+        ListaRecordatorios.remove(Ventana.ingresarDatoInt());
     }
 
     public void modificarRecordatorio() {
         mostrarRecordatorios();
-        menu.mostrarMensaje("Ingrese el índice del recordatorio a modificar: ");
+        Ventana.mostrarMensaje("Ingrese el índice del recordatorio a modificar: ");
 
-        int indice = sc3.nextInt();
-        sc3.nextLine();
+        int indice = Ventana.ingresarDatoInt();
+        Ventana.ingresarDatoString();
 
         if (indice >= 0 && indice < ListaRecordatorios.size()) {
-            menu.mostrarMensaje("Ingrese el nuevo título: ");
-            String nuevoTitulo = sc3.nextLine();
-            menu.mostrarMensaje("Ingrese la nueva descripción: ");
-            String nuevaDescripcion = sc3.nextLine();
-            menu.mostrarMensaje("Ingrese la nueva fecha: ");
-            String nuevaFecha = sc3.nextLine();
-            menu.mostrarMensaje("Ingrese la nueva prioridad: ");
-            String nuevaPrioridad = sc3.nextLine();
-            menu.mostrarMensaje("Ingrese el nuevo estado: ");
-            String nuevoEstado = sc3.nextLine();
+            Ventana.mostrarMensaje("Ingrese el nuevo título: ");
+            String nuevoTitulo = Ventana.ingresarDatoString();
+            Ventana.mostrarMensaje("Ingrese la nueva descripción: ");
+            String nuevaDescripcion = Ventana.ingresarDatoString();
+            Ventana.mostrarMensaje("Ingrese la nueva fecha: ");
+            String nuevaFecha = Ventana.ingresarDatoString();
+            Ventana.mostrarMensaje("Ingrese la nueva prioridad: ");
+            String nuevaPrioridad = Ventana.ingresarDatoString();
+            Ventana.mostrarMensaje("Ingrese el nuevo estado: ");
+            String nuevoEstado = Ventana.ingresarDatoString();
 
             Recordatorio nuevoRecordatorio = new Recordatorio(nuevoTitulo, nuevaDescripcion, nuevaFecha, nuevaPrioridad, nuevoEstado);
 
             ListaRecordatorios.set(indice, nuevoRecordatorio);
-            menu.mostrarMensaje("Recordatorio modificado correctamente.");
+            Ventana.mostrarMensaje("Recordatorio modificado correctamente.");
         } else {
-            menu.mostrarMensaje("Índice inválido.");
+            Ventana.mostrarMensaje("Índice inválido.");
         }
     }
 
-    public static void crearRecordatorio(String titulo, String descripcion, String fecha, String prioridad, String estado) {
-
-        Recordatorio nuevoRecordatorio = new Recordatorio(titulo, descripcion, fecha, prioridad, estado);
-
-        ListaRecordatorios.add(nuevoRecordatorio);
-    }
+   
 
 }
