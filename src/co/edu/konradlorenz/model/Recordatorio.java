@@ -1,9 +1,9 @@
 package co.edu.konradlorenz.model;
 
-public class Recordatorio {
+public abstract class Recordatorio {
 
-    String titulo, descripcion, fecha, ubicacion;
-    Prioridad prioridad;//DEPENDENCIA
+    protected String titulo, descripcion, fecha, ubicacion;
+    protected Prioridad prioridad;//DEPENDENCIA
     public Recordatorio(String titulo, String descripcion, String fecha, Prioridad prioridad, String ubicacion) {
         this.titulo = titulo;
         this.descripcion = descripcion;
