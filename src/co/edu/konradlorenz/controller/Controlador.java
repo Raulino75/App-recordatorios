@@ -123,7 +123,8 @@ public class Controlador {
         String titulo = Ventana.ingresarDatoString();
         for (Recordatorio recordatorio : listaRecordatorios) {
             if (recordatorio.getTitulo().equals(titulo)) {
-                Ventana.mostrarMensaje(
+                try {
+                 Ventana.mostrarMensaje(
                         "Ingrese el nuevo titulo, descripcion, fecha, prioridad y ubicacion del RECORDATORIO");
                 String nuevoTitulo = Ventana.ingresarDatoString();
                 String nuevaDescripcion = Ventana.ingresarDatoString();
@@ -138,10 +139,15 @@ public class Controlador {
                 recordatorio.setUbicacion(nuevaUbicacion);
 
                 Ventana.mostrarMensaje("Recordatorio modificado exitosamente.");
+                } catch(Exception e){
+                    Ventana.mostrarMensaje("Error al modificar el recordatorio"+e.getMessage());
+                }
+               
             } else {
                 Ventana.mostrarMensaje("No se encontró un recordatorio con ese título.");
             }
         }
+        
     }
 
     public void eliminarRecordatorio() {
