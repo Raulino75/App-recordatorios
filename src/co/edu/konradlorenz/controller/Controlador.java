@@ -76,7 +76,16 @@ public class Controlador {
         recordatorioBasico.setFecha(fecha);
         recordatorioBasico.setPrioridad(prioridad);
         recordatorioBasico.setUbicacion(ubicacion);
-
+        try {
+            for (Recordatorio listaRecordatorio : listaRecordatorios) {
+                boolean titulito = false; // comprovamos si es falso o verdadero que el titulo es igual que uno ya registrado 
+                if (titulo == listaRecordatorio.getTitulo()) {
+                    throw new DuplicateReminderException("Titulo en uso");
+                }
+            }
+        } catch (DuplicateReminderException e) {
+            Ventana.mostrarMensaje("El titulo esta en uso, no puede disponer de este titulo");
+        }
         listaRecordatorios.add(recordatorioBasico);
         Ventana.mostrarMensaje("Recordatorio básico creado exitosamente.");
     }
@@ -139,7 +148,7 @@ public class Controlador {
                 recordatorio.setUbicacion(nuevaUbicacion);
 
                 Ventana.mostrarMensaje("Recordatorio modificado exitosamente.");
-                
+
             } else {
                 Ventana.mostrarMensaje("No se encontró un recordatorio con ese título.");
             }

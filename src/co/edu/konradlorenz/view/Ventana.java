@@ -18,7 +18,7 @@ public class Ventana {
             Ventana v = new Ventana();
             dato = v.scanner.nextInt();
         } catch (InputMismatchException e) {
-            mostrarMensaje("Tipo de dato nulo");
+            mostrarMensaje("Tipo de dato incorrecto o no es un numero ");
         } catch (Exception e) {
             mostrarMensaje("Error al guardar la variable tipo entero");
         }
