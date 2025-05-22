@@ -2,73 +2,113 @@ package co.edu.konradlorenz.view;
 
 import co.edu.konradlorenz.model.*;
 import java.util.*;
-import java.util.Scanner;
 
 public class Ventana {
-
-    private Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static void mostrarMensaje(String mensaje) {
         System.out.println(mensaje);
     }
 
-    public static int ingresarDatoInt() {
-        int dato = 0;
-        try {
-            Ventana v = new Ventana();
-            dato = v.scanner.nextInt();
-        } catch (InputMismatchException e) {
-            mostrarMensaje("Tipo de dato incorrecto o no es un numero ");
-        } catch (Exception e) {
-            mostrarMensaje("Error al guardar la variable tipo entero");
+    public static int ingresarDatoInt() throws EmptyInputException {
+        while (true) {
+            try {
+                String input = scanner.nextLine().trim();
+                if (input.isEmpty()) {
+                    throw new EmptyInputException("número");
+                }
+                return Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                mostrarMensaje("Error: Ingrese un número válido");
+                mostrarMensaje("Intente nuevamente:");
+            } catch (EmptyInputException e) {
+                mostrarMensaje("Error: " + e.getMessage());
+                mostrarMensaje("Intente nuevamente:");
+            }
         }
-        return dato;
-
     }
 
-    public static String ingresarDatoString() {
-        String dato = null;
-        try {
-            Ventana v = new Ventana();
-            dato = v.scanner.nextLine();
-        } catch (NullPointerException e) {
-            mostrarMensaje("Tipo de dato nulo");
-        } catch (Exception e) {
-            mostrarMensaje("Error al guardar la variable String");
+    public static String ingresarDatoString() throws EmptyInputException {
+        while (true) {
+            try {
+                String input = scanner.nextLine().trim();
+                if (input.isEmpty()) {
+                    throw new EmptyInputException("texto");
+                }
+                return input;
+            } catch (EmptyInputException e) {
+                mostrarMensaje("Error: " + e.getMessage());
+                mostrarMensaje("Intente nuevamente:");
+            }
         }
-        return dato;
     }
 
-    public static Prioridad ingresarDatoPrioridad() {
-        Ventana v = new Ventana();
-        for (Prioridad prioridad : Prioridad.values()) {
-            System.out.println(prioridad);
+    public static Prioridad ingresarDatoPrioridad() throws InvalidPriorityException, EmptyInputException {
+        while (true) {
+            try {
+                mostrarMensaje("Prioridades disponibles:");
+                for (Prioridad prioridad : Prioridad.values()) {
+                    mostrarMensaje("- " + prioridad.name());
+                }
+                
+                String input = scanner.nextLine().trim().toUpperCase();
+                if (input.isEmpty()) {
+                    throw new EmptyInputException("prioridad");
+                }
+                
+                try {
+                    Prioridad prioridad = Prioridad.valueOf(input);
+                    mostrarMensaje("Prioridad seleccionada: " + prioridad);
+                    return prioridad;
+                } catch (IllegalArgumentException e) {
+                    throw new InvalidPriorityException(input);
+                }
+                
+            } catch (EmptyInputException | InvalidPriorityException e) {
+                mostrarMensaje("Error: " + e.getMessage());
+                mostrarMensaje("Intente nuevamente con alguna de las opciones listadas:");
+            }
         }
-        String dato = v.scanner.nextLine().toUpperCase();
-        Prioridad prioridad = Prioridad.SIN_PRIORIDAD;
-        try {
-            prioridad = Prioridad.valueOf(dato);
-        } catch (IllegalArgumentException e) {
-            mostrarMensaje("Valor no valido para enum prioridad");
-        } catch (NullPointerException e) {
-            mostrarMensaje("El valor ingresado es nulo");
-        } catch (Exception e) {
-            mostrarMensaje("Error desconocido al guardadr valor de enum prioridad");
-        } finally {
-            mostrarMensaje("Prioridad guardada como: " + prioridad);
-        }
+    }
 
-        return prioridad;
+    public static String ingresarFecha() throws InvalidReminderDateException, EmptyInputException {
+        while (true) {
+            try {
+                mostrarMensaje("Ingrese la fecha en formato DD/MM/YYYY:");
+                String fecha = ingresarDatoString();
+                if (!fecha.matches("\\d{2}/\\d{2}/\\d{4}")) {
+                    throw new InvalidReminderDateException(null);
+                }
+                return fecha;
+            } catch (InvalidReminderDateException e) {
+                mostrarMensaje("Error: Formato de fecha inválido. Use DD/MM/YYYY");
+                mostrarMensaje("Intente nuevamente:");
+            }
+        }
     }
 
     public static int mostrarMenuPrincipal() {
-        mostrarMensaje("\n\n\n-------Menu-------");
-        mostrarMensaje("1. Agregar recordatorio");
-        mostrarMensaje("2. Ver recordatorios");
-        mostrarMensaje("3. Modificar recordatorio");
-        mostrarMensaje("4. Eliminar recordatorio");
-        mostrarMensaje("5. Cerrar programa");
-        mostrarMensaje("\n Seleccione una opción");
-        return ingresarDatoInt();
+        while (true) {
+            try {
+                mostrarMensaje("\n=== SISTEMA DE RECORDATORIOS ===");
+                mostrarMensaje("1. Agregar recordatorio");
+                mostrarMensaje("2. Ver recordatorios");
+                mostrarMensaje("3. Modificar recordatorio");
+                mostrarMensaje("4. Eliminar recordatorio");
+                mostrarMensaje("5. Cerrar programa");
+                mostrarMensaje("\nSeleccione una opción (1-5):");
+                
+                int opcion = ingresarDatoInt();
+                if (opcion < 1 || opcion > 5) {
+                    throw new IllegalArgumentException("Opción fuera de rango");
+                }
+                return opcion;
+                
+            } catch (IllegalArgumentException e) {
+                mostrarMensaje("Error: Seleccione una opción entre 1 y 5");
+            } catch (EmptyInputException e) {
+                mostrarMensaje("Error: " + e.getMessage());
+            }
+        }
     }
 }

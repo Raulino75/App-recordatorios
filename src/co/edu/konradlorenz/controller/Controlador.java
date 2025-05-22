@@ -4,39 +4,52 @@ import co.edu.konradlorenz.model.*;
 import co.edu.konradlorenz.view.Ventana;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class Controlador {
 
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     public static List<Recordatorio> listaRecordatorios = new ArrayList<>();
 
-    void run() {
+    public void run() {
         int opcion;
         do {
-            opcion = Ventana.mostrarMenuPrincipal();
-            switch (opcion) {
-                case 1:// AGREGA RECORDATORIO
-                    agregarRecordatorio();
-                    break;
-                case 2:// ver recordatorios
-                    verRecordatorios();
-                    break;
-                case 3:// modificar recordatorio
-                    modificarRecordatorio();
-                    break;
-                case 4:// eliminar recordatorio
-                    eliminarRecordatorio();
-                    break;
-                case 5:// Cerrar programa
-                    cerrarPrograma();
-                    break;
-                default:
-                    Ventana.mostrarMensaje("Opción no válida. Intente nuevamente.");
-                    break;
+            try {
+                opcion = Ventana.mostrarMenuPrincipal();
+                switch (opcion) {
+                    case 1:
+                        agregarRecordatorio();
+                        break;
+                    case 2:
+                        verRecordatorios();
+                        break;
+                    case 3:
+                        modificarRecordatorio();
+                        break;
+                    case 4:
+                        eliminarRecordatorio();
+                        break;
+                    case 5:
+                        cerrarPrograma();
+                        break;
+                    default:
+                        throw new InvalidMenuOptionException(opcion);
+                }
+            } catch (EmptyInputException | InvalidMenuOptionException | InvalidPriorityException | 
+                     DuplicateReminderException | InvalidReminderDateException e) {
+                Ventana.mostrarMensaje("Error: " + e.getMessage());
+                opcion = 0;
+            } catch (Exception e) {
+                Ventana.mostrarMensaje("Error inesperado: " + e.getMessage());
+                opcion = 0;
             }
         } while (opcion != 5);
     }
 
-    public void agregarRecordatorio() {
+    private void agregarRecordatorio() throws EmptyInputException, InvalidPriorityException, InvalidMenuOptionException, 
+            DuplicateReminderException, InvalidReminderDateException {
         Ventana.mostrarMensaje("Seleccione el tipo de recordatorio a agregar:");
         Ventana.mostrarMensaje("1. Recordatorio Basico");
         Ventana.mostrarMensaje("2. Recordatorio Premium");
@@ -49,67 +62,41 @@ public class Controlador {
                 crearRecordatorioPremium();
                 break;
             default:
-                Ventana.mostrarMensaje("Opción no válida.");
-                break;
+                throw new InvalidMenuOptionException(key);
         }
     }
 
-    public void crearRecordatorioBasico() {
-        Ventana.mostrarMensaje("Ingrese el título del recordatorio:");
-        String titulo = Ventana.ingresarDatoString();
-
-        Ventana.mostrarMensaje("Ingrese la descripción:");
-        String descripcion = Ventana.ingresarDatoString();
-
-        Ventana.mostrarMensaje("Ingrese la fecha (DD/MM/YYYY):");
-        String fecha = Ventana.ingresarDatoString();
-
-        Ventana.mostrarMensaje("Ingrese la prioridad (ALTA/MEDIA/BAJA/SIN_PRIORIDAD):");
-        Prioridad prioridad = Ventana.ingresarDatoPrioridad();
-
-        Ventana.mostrarMensaje("Ingrese la ubicación:");
-        String ubicacion = Ventana.ingresarDatoString();
+    private void crearRecordatorioBasico() throws DuplicateReminderException, InvalidReminderDateException, 
+            EmptyInputException, InvalidPriorityException {
+        String titulo = obtenerTituloUnico();
+        String descripcion = obtenerDescripcion();
+        LocalDateTime fecha = obtenerFechaValida();
+        Prioridad prioridad = obtenerPrioridad();
+        String ubicacion = obtenerUbicacion();
 
         Recordatorio recordatorioBasico = new RecordatorioBasico();
         recordatorioBasico.setTitulo(titulo);
         recordatorioBasico.setDescripcion(descripcion);
-        recordatorioBasico.setFecha(fecha);
+        recordatorioBasico.setFecha(fecha.format(DATE_FORMATTER));
         recordatorioBasico.setPrioridad(prioridad);
         recordatorioBasico.setUbicacion(ubicacion);
-        try {
-            for (Recordatorio listaRecordatorio : listaRecordatorios) {
-                boolean titulito = false; // comprovamos si es falso o verdadero que el titulo es igual que uno ya registrado 
-                if (titulo == listaRecordatorio.getTitulo()) {
-                    throw new DuplicateReminderException("Titulo en uso");
-                }
-            }
-        } catch (DuplicateReminderException e) {
-            Ventana.mostrarMensaje("El titulo esta en uso, no puede disponer de este titulo");
-        }
+
         listaRecordatorios.add(recordatorioBasico);
         Ventana.mostrarMensaje("Recordatorio básico creado exitosamente.");
     }
 
-    public void crearRecordatorioPremium() {
-        Ventana.mostrarMensaje("Ingrese el título del recordatorio:");
-        String titulo = Ventana.ingresarDatoString();
-
-        Ventana.mostrarMensaje("Ingrese la descripción:");
-        String descripcion = Ventana.ingresarDatoString();
-
-        Ventana.mostrarMensaje("Ingrese la fecha (DD/MM/YYYY):");
-        String fecha = Ventana.ingresarDatoString();
-
-        Ventana.mostrarMensaje("Ingrese la prioridad (ALTA/MEDIA/BAJA/SIN_PRIORIDAD):");
-        Prioridad prioridad = Ventana.ingresarDatoPrioridad();
-
-        Ventana.mostrarMensaje("Ingrese la ubicación:");
-        String ubicacion = Ventana.ingresarDatoString();
+    private void crearRecordatorioPremium() throws DuplicateReminderException, InvalidReminderDateException, 
+            EmptyInputException, InvalidPriorityException {
+        String titulo = obtenerTituloUnico();
+        String descripcion = obtenerDescripcion();
+        LocalDateTime fecha = obtenerFechaValida();
+        Prioridad prioridad = obtenerPrioridad();
+        String ubicacion = obtenerUbicacion();
 
         Recordatorio recordatorioPremium = new RecordatorioPremium();
         recordatorioPremium.setTitulo(titulo);
         recordatorioPremium.setDescripcion(descripcion);
-        recordatorioPremium.setFecha(fecha);
+        recordatorioPremium.setFecha(fecha.format(DATE_FORMATTER));
         recordatorioPremium.setPrioridad(prioridad);
         recordatorioPremium.setUbicacion(ubicacion);
 
@@ -117,65 +104,122 @@ public class Controlador {
         Ventana.mostrarMensaje("Recordatorio premium creado exitosamente.");
     }
 
-    private void verRecordatorios() {
-        if (listaRecordatorios.isEmpty()) {
-            Ventana.mostrarMensaje("No hay recordatorios disponibles.");
-        } else {
-            for (Recordatorio recordatorio : listaRecordatorios) {
-                Ventana.mostrarMensaje(recordatorio.toString());
+    private String obtenerTituloUnico() throws DuplicateReminderException, EmptyInputException {
+        Ventana.mostrarMensaje("Ingrese el título del recordatorio:");
+        String titulo = Ventana.ingresarDatoString();
+        
+        for (Recordatorio r : listaRecordatorios) {
+            if (r.getTitulo().equals(titulo)) {
+                throw new DuplicateReminderException("El título ya está en uso");
             }
+        }
+        return titulo;
+    }
+
+    private String obtenerDescripcion() throws EmptyInputException {
+        Ventana.mostrarMensaje("Ingrese la descripción:");
+        return Ventana.ingresarDatoString();
+    }
+
+    private LocalDateTime obtenerFechaValida() throws InvalidReminderDateException, EmptyInputException {
+        Ventana.mostrarMensaje("Ingrese la fecha (DD/MM/YYYY):");
+        String fechaStr = Ventana.ingresarDatoString();
+        try {
+            LocalDateTime fecha = LocalDateTime.parse(fechaStr + " 00:00", DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+            if (fecha.isBefore(LocalDateTime.now())) {
+                throw new InvalidReminderDateException(fecha);
+            }
+            return fecha;
+        } catch (DateTimeParseException e) {
+            throw new InvalidReminderDateException(null);
         }
     }
 
-    public void modificarRecordatorio() {
-        Ventana.mostrarMensaje("Ingrese el titulo del recordatorio a modificar");
+    private Prioridad obtenerPrioridad() throws InvalidPriorityException, EmptyInputException {
+        Ventana.mostrarMensaje("Ingrese la prioridad (ALTA/MEDIA/BAJA/SIN_PRIORIDAD):");
+        return Ventana.ingresarDatoPrioridad();
+    }
+
+    private String obtenerUbicacion() throws EmptyInputException {
+        Ventana.mostrarMensaje("Ingrese la ubicación:");
+        return Ventana.ingresarDatoString();
+    }
+
+    private void verRecordatorios() {
+        if (listaRecordatorios.isEmpty()) {
+            Ventana.mostrarMensaje("No hay recordatorios disponibles.");
+            return;
+        }
+        
+        for (Recordatorio recordatorio : listaRecordatorios) {
+            Ventana.mostrarMensaje(recordatorio.toString());
+        }
+    }
+
+    private void modificarRecordatorio() throws EmptyInputException, InvalidPriorityException, 
+            DuplicateReminderException, InvalidReminderDateException {
+        if (listaRecordatorios.isEmpty()) {
+            Ventana.mostrarMensaje("No hay recordatorios para modificar.");
+            return;
+        }
+
+        Ventana.mostrarMensaje("Ingrese el título del recordatorio a modificar:");
         String titulo = Ventana.ingresarDatoString();
+        boolean encontrado = false;
+
         for (Recordatorio recordatorio : listaRecordatorios) {
             if (recordatorio.getTitulo().equals(titulo)) {
-
-                Ventana.mostrarMensaje(
-                        "Ingrese el nuevo titulo, descripcion, fecha, prioridad y ubicacion del RECORDATORIO");
-                String nuevoTitulo = Ventana.ingresarDatoString();
-                String nuevaDescripcion = Ventana.ingresarDatoString();
-                String nuevaFecha = Ventana.ingresarDatoString();
-                Prioridad nuevaPrioridad = Ventana.ingresarDatoPrioridad();
-                String nuevaUbicacion = Ventana.ingresarDatoString();
+                encontrado = true;
+                Ventana.mostrarMensaje("Ingrese los nuevos datos del recordatorio:");
+                
+                String nuevoTitulo = obtenerTituloUnico();
+                String nuevaDescripcion = obtenerDescripcion();
+                LocalDateTime nuevaFecha = obtenerFechaValida();
+                Prioridad nuevaPrioridad = obtenerPrioridad();
+                String nuevaUbicacion = obtenerUbicacion();
 
                 recordatorio.setTitulo(nuevoTitulo);
                 recordatorio.setDescripcion(nuevaDescripcion);
-                recordatorio.setFecha(nuevaFecha);
+                recordatorio.setFecha(nuevaFecha.format(DATE_FORMATTER));
                 recordatorio.setPrioridad(nuevaPrioridad);
                 recordatorio.setUbicacion(nuevaUbicacion);
 
                 Ventana.mostrarMensaje("Recordatorio modificado exitosamente.");
-
-            } else {
-                Ventana.mostrarMensaje("No se encontró un recordatorio con ese título.");
-            }
-        }
-
-    }
-
-    public void eliminarRecordatorio() {
-        Ventana.mostrarMensaje("Ingrese el título del recordatorio a eliminar:");
-        String titulo = Ventana.ingresarDatoString();
-        boolean encontrado = false;
-        for (Recordatorio recordatorio : listaRecordatorios) {
-            if (recordatorio.getTitulo().equals(titulo)) {
-                listaRecordatorios.remove(recordatorio);
-                Ventana.mostrarMensaje("Recordatorio eliminado exitosamente.");
-                encontrado = true;
                 break;
             }
         }
+        
         if (!encontrado) {
+            Ventana.mostrarMensaje("No se encontró un recordatorio con ese título.");
+        }
+    }
+
+    private void eliminarRecordatorio() throws EmptyInputException {
+        if (listaRecordatorios.isEmpty()) {
+            Ventana.mostrarMensaje("No hay recordatorios para eliminar.");
+            return;
+        }
+
+        Ventana.mostrarMensaje("Ingrese el título del recordatorio a eliminar:");
+        String titulo = Ventana.ingresarDatoString();
+        Recordatorio aEliminar = null;
+
+        for (Recordatorio r : listaRecordatorios) {
+            if (r.getTitulo().equals(titulo)) {
+                aEliminar = r;
+                break;
+            }
+        }
+
+        if (aEliminar != null) {
+            listaRecordatorios.remove(aEliminar);
+            Ventana.mostrarMensaje("Recordatorio eliminado exitosamente.");
+        } else {
             Ventana.mostrarMensaje("No se encontró un recordatorio con ese título.");
         }
     }
 
     private void cerrarPrograma() {
         Ventana.mostrarMensaje("Programa cerrado.");
-
     }
-
 }
