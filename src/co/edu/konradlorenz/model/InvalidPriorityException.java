@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
  * @author dulce
  */
 public class InvalidPriorityException extends Exception{
-    public InvalidPriorityException(Prioridad priority) {
-        super("La prioridad: "+ priority + " es invalida");
+    public InvalidPriorityException(String priority) {
+        super("The priority: "+ priority + " is invalid.");
     }
 }

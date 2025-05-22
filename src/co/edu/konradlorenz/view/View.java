@@ -1,10 +1,16 @@
 package co.edu.konradlorenz.view;
 
+import co.edu.konradlorenz.controller.Controller;
 import co.edu.konradlorenz.model.*;
+import java.time.LocalTime;
 import java.util.*;
 
-public class Ventana {
+public class View {
+
     private static final Scanner scanner = new Scanner(System.in);
+
+    private static LocalTime currentTime = LocalTime.now();
+    private static LocalTime timeLimit = LocalTime.of(12, 0);
 
     public static void mostrarMensaje(String mensaje) {
         System.out.println(mensaje);
@@ -43,27 +49,27 @@ public class Ventana {
         }
     }
 
-    public static Prioridad ingresarDatoPrioridad() throws InvalidPriorityException, EmptyInputException {
+    public static Priority ingresarDatoPrioridad() throws InvalidPriorityException, EmptyInputException {
         while (true) {
             try {
                 mostrarMensaje("Prioridades disponibles:");
-                for (Prioridad prioridad : Prioridad.values()) {
+                for (Priority prioridad : Priority.values()) {
                     mostrarMensaje("- " + prioridad.name());
                 }
-                
+
                 String input = scanner.nextLine().trim().toUpperCase();
                 if (input.isEmpty()) {
                     throw new EmptyInputException("prioridad");
                 }
-                
+
                 try {
-                    Prioridad prioridad = Prioridad.valueOf(input);
+                    Priority prioridad = Priority.valueOf(input);
                     mostrarMensaje("Prioridad seleccionada: " + prioridad);
                     return prioridad;
                 } catch (IllegalArgumentException e) {
                     throw new InvalidPriorityException(input);
                 }
-                
+
             } catch (EmptyInputException | InvalidPriorityException e) {
                 mostrarMensaje("Error: " + e.getMessage());
                 mostrarMensaje("Intente nuevamente con alguna de las opciones listadas:");
@@ -90,6 +96,14 @@ public class Ventana {
     public static int mostrarMenuPrincipal() {
         while (true) {
             try {
+                String time;
+                if (currentTime.isBefore(timeLimit)) {
+                    time = "Good Morning. Welcome to Ding!";
+//                    mostrarMensaje(time);
+                } else {
+                    time = "Good Afternoon. Welcome to Ding!";
+                }
+                mostrarMensaje(time);
                 mostrarMensaje("\n=== SISTEMA DE RECORDATORIOS ===");
                 mostrarMensaje("1. Agregar recordatorio");
                 mostrarMensaje("2. Ver recordatorios");
@@ -97,13 +111,13 @@ public class Ventana {
                 mostrarMensaje("4. Eliminar recordatorio");
                 mostrarMensaje("5. Cerrar programa");
                 mostrarMensaje("\nSeleccione una opción (1-5):");
-                
+
                 int opcion = ingresarDatoInt();
                 if (opcion < 1 || opcion > 5) {
                     throw new IllegalArgumentException("Opción fuera de rango");
                 }
                 return opcion;
-                
+
             } catch (IllegalArgumentException e) {
                 mostrarMensaje("Error: Seleccione una opción entre 1 y 5");
             } catch (EmptyInputException e) {
@@ -111,4 +125,5 @@ public class Ventana {
             }
         }
     }
+
 }

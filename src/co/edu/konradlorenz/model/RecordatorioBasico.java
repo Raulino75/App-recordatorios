@@ -2,12 +2,12 @@ package co.edu.konradlorenz.model;
 
 import co.edu.konradlorenz.view.*;
 
-public class RecordatorioBasico extends Recordatorio implements TipoCuenta {
+public class RecordatorioBasico extends Recordatory implements TypeAccount {
 
     private int pago;
 
     
-    public RecordatorioBasico(String titulo, String descripcion, String fecha, Prioridad prioridad, String ubicacion,
+    public RecordatorioBasico(String titulo, String descripcion, String fecha, Priority prioridad, String ubicacion,
             int pago) {
         super(titulo, descripcion, fecha, prioridad, ubicacion);
         this.pago = pago;
@@ -21,12 +21,12 @@ public class RecordatorioBasico extends Recordatorio implements TipoCuenta {
     }
 
     public void descripcion() {
-        Ventana.mostrarMensaje("Plan basico de Recordatorios que incluye Titulo, descripcion, fecha, prioridad y ubicacion");
+        View.mostrarMensaje("Plan basico de Recordatorios que incluye Titulo, descripcion, fecha, prioridad y ubicacion");
     }
     
     public void calcularPago() {
         pago = 0;
-        Ventana.mostrarMensaje("El plan basico es GRATIS");
+        View.mostrarMensaje("El plan basico es GRATIS");
     }
     
     

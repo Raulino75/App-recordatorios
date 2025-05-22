@@ -12,6 +12,6 @@ import java.time.LocalDateTime;
  */
 public class InvalidReminderDateException extends Exception{
     public InvalidReminderDateException(LocalDateTime dateTime) {
-        super("La fecha y hora '" + dateTime + "' no es válida para un recordatorio.");
+        super("The date and time " + dateTime + " is not valid for a reminder.");
     }
 }

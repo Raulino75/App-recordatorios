@@ -1,6 +1,6 @@
 package co.edu.konradlorenz.model;
 
-public interface TipoCuenta {
+public interface TypeAccount {
 
     public void descripcion();
     public void calcularPago();

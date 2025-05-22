@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
  * @author dulce
  */
 public class InvalidMenuOptionException extends Exception{
-    public InvalidMenuOptionException(int opcion) {
-        super("La opcion" + opcion + "' no es válida.");
+    public InvalidMenuOptionException(int option) {
+        super("The option" + option + "' is invalid.");
     }
 }

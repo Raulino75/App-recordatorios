@@ -2,11 +2,11 @@ package co.edu.konradlorenz.model;
 
 import co.edu.konradlorenz.view.*;
 
-public class RecordatorioPremium extends Recordatorio implements TipoCuenta {
+public class RecordatorioPremium extends Recordatory implements TypeAccount {
     private int pago;
     private int calificaciones;
 
-    public RecordatorioPremium(String titulo, String descripcion, String fecha, Prioridad prioridad, String ubicacion,
+    public RecordatorioPremium(String titulo, String descripcion, String fecha, Priority prioridad, String ubicacion,
             int pago, int calificaciones) {
         super(titulo, descripcion, fecha, prioridad, ubicacion);
         this.pago = pago;
@@ -39,7 +39,7 @@ public class RecordatorioPremium extends Recordatorio implements TipoCuenta {
                 + ", getUbicacion()=" + getUbicacion() + ", toString()=" + super.toString() + "]";
     }
     public void descripcion(){
-        Ventana.mostrarMensaje("Plan premium incluye promedio de calificaciones en tiempo real y mucho mas");
+        View.mostrarMensaje("Plan premium incluye promedio de calificaciones en tiempo real y mucho mas");
     }
 
     public void calcularPago(){
@@ -47,6 +47,6 @@ public class RecordatorioPremium extends Recordatorio implements TipoCuenta {
         if (tiempoPlan == 1){
             
         }
-        Ventana.mostrarMensaje("El costo del plan premium es de "+ pago);
+        View.mostrarMensaje("El costo del plan premium es de "+ pago);
     }
 }

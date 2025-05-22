@@ -1,10 +1,10 @@
 package co.edu.konradlorenz.model;
 
-public abstract class Recordatorio {
+public abstract class Recordatory {
 
     protected String titulo, descripcion, fecha, ubicacion;
-    protected Prioridad prioridad;//DEPENDENCIA
-    public Recordatorio(String titulo, String descripcion, String fecha, Prioridad prioridad, String ubicacion) {
+    protected Priority prioridad;//DEPENDENCIA
+    public Recordatory(String titulo, String descripcion, String fecha, Priority prioridad, String ubicacion) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.fecha = fecha;
@@ -13,7 +13,7 @@ public abstract class Recordatorio {
         
     }
 
-    public Recordatorio() {
+    public Recordatory() {
     }
 
     public String getTitulo() {
@@ -40,11 +40,11 @@ public abstract class Recordatorio {
         this.fecha = fecha;
     }
 
-    public Prioridad getPrioridad() {
+    public Priority getPrioridad() {
         return prioridad;
     }
 
-    public void setPrioridad(Prioridad prioridad) {
+    public void setPrioridad(Priority prioridad) {
         this.prioridad = prioridad;
     }
 

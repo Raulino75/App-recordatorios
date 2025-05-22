@@ -10,6 +10,6 @@ package co.edu.konradlorenz.model;
  */
 public class DuplicateReminderException extends Exception{
     public DuplicateReminderException(String title) {
-        super("Ya existe un recordatorio con el título: '" + title + "'.");
+        super("There is already a reminder with the title:" + title + "'.");
     }
 }

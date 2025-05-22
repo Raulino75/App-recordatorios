@@ -9,7 +9,7 @@ package co.edu.konradlorenz.model;
  * @author dulce
  */
 public class EmptyInputException extends Exception{
-  public EmptyInputException (){
-      super ("El campo no puede estar");
+  public EmptyInputException (String texto){
+      super ("The field cannot be");
   }  
 }
