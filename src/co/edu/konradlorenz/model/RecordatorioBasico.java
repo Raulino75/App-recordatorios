@@ -7,26 +7,21 @@ public class RecordatorioBasico extends Recordatory implements TypeAccount {
     private int pago;
 
     
-    public RecordatorioBasico(String titulo, String descripcion, String fecha, Priority prioridad, String ubicacion,
-            int pago) {
+    public RecordatorioBasico(String titulo, String descripcion, String fecha, Priority prioridad, String ubicacion) {
         super(titulo, descripcion, fecha, prioridad, ubicacion);
-        this.pago = pago;
-    }
-
-    public RecordatorioBasico(int pago) {
-        this.pago = pago;
+        this.pago = 0;
     }
 
     public RecordatorioBasico() {
     }
 
-    public void descripcion() {
-        View.mostrarMensaje("Plan basico de Recordatorios que incluye Titulo, descripcion, fecha, prioridad y ubicacion");
+    public String descripcion() {
+        return "Plan basico de Recordatorios que incluye Titulo, descripcion, fecha, prioridad y ubicacion";
     }
     
-    public void calcularPago() {
+    public String calcularPago(int tiempoPlan) {
         pago = 0;
-        View.mostrarMensaje("El plan basico es GRATIS");
+        return "El plan basico es GRATIS!!";
     }
     
     

@@ -12,11 +12,6 @@ import java.util.Map;
 
 public class Controller {
     
-    private static  Map<String, String> texts_en = new HashMap<>();
-    private static final Map<String, String> texts_es = new HashMap<>();
-    
-    
-
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     public static List<Recordatory> remindersList = new ArrayList<>();
 
@@ -44,8 +39,8 @@ public class Controller {
                     default:
                         throw new InvalidMenuOptionException(opcion);
                 }
-            } catch (EmptyInputException | InvalidMenuOptionException | InvalidPriorityException | 
-                     DuplicateReminderException | InvalidReminderDateException e) {
+            } catch (EmptyInputException | InvalidMenuOptionException | InvalidPriorityException
+                    | DuplicateReminderException | InvalidReminderDateException e) {
                 View.mostrarMensaje("Error: " + e.getMessage());
                 opcion = 0;
             } catch (Exception e) {
@@ -55,7 +50,7 @@ public class Controller {
         } while (opcion != 5);
     }
 
-    private void addReminder() throws EmptyInputException, InvalidPriorityException, InvalidMenuOptionException, 
+    private void addReminder() throws EmptyInputException, InvalidPriorityException, InvalidMenuOptionException,
             DuplicateReminderException, InvalidReminderDateException {
         View.mostrarMensaje("Select the type of reminder to add:");
         View.mostrarMensaje("1. Basic Recordatory");
@@ -73,8 +68,8 @@ public class Controller {
         }
     }
 
-    private void createBasicReminder() throws DuplicateReminderException, InvalidReminderDateException, 
-            EmptyInputException, InvalidPriorityException {
+    private void createBasicReminder() throws DuplicateReminderException, InvalidReminderDateException,
+        EmptyInputException, InvalidPriorityException {
         String title = obtainASingleCertificate();
         String description = obtainDescripcion();
         LocalDateTime date = obtainValidDate();
@@ -92,20 +87,22 @@ public class Controller {
         View.mostrarMensaje("Basic reminder successfully created.");
     }
 
-    private void createPremiumReminder() throws DuplicateReminderException, InvalidReminderDateException, 
+    private void createPremiumReminder() throws DuplicateReminderException, InvalidReminderDateException,
             EmptyInputException, InvalidPriorityException {
         String titulo = obtainASingleCertificate();
-        String descripcion = obtainDescripcion();
-        LocalDateTime fecha = obtainValidDate();
-        Priority prioridad = obtainPriority();
-        String ubicacion = obtainLocation();
+        String description = obtainDescripcion();
+        LocalDateTime date = obtainValidDate();
+        Priority priority = obtainPriority();
+        String location = obtainLocation();
+        int grade = obtainGrade();
 
         Recordatory recordatorioPremium = new RecordatorioPremium();
         recordatorioPremium.setTitulo(titulo);
-        recordatorioPremium.setDescripcion(descripcion);
-        recordatorioPremium.setFecha(fecha.format(DATE_FORMATTER));
-        recordatorioPremium.setPrioridad(prioridad);
-        recordatorioPremium.setUbicacion(ubicacion);
+        recordatorioPremium.setDescripcion(description);
+        recordatorioPremium.setFecha(date.format(DATE_FORMATTER));
+        recordatorioPremium.setPrioridad(priority);
+        recordatorioPremium.setUbicacion(location);
+        recordatorioPremium.setCalificaciones(grade);
 
         remindersList.add(recordatorioPremium);
         View.mostrarMensaje("Premium reminder successfully created.");
@@ -114,7 +111,7 @@ public class Controller {
     private String obtainASingleCertificate() throws DuplicateReminderException, EmptyInputException {
         View.mostrarMensaje("Enter the title of the reminder:");
         String titulo = View.ingresarDatoString();
-        
+
         for (Recordatory r : remindersList) {
             if (r.getTitulo().equals(titulo)) {
                 throw new DuplicateReminderException("The title is already in use");
@@ -132,7 +129,7 @@ public class Controller {
         View.mostrarMensaje("Enter the date (DD/MM/YYYYYY):");
         String fechaStr = View.ingresarDatoString();
         try {
-            LocalDateTime date = LocalDateTime.parse(fechaStr + " 00:00", DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+            LocalDateTime date = LocalDateTime.parse(fechaStr, DateTimeFormatter.ofPattern("dd/MM/yyyy")); // FIXME
             if (date.isBefore(LocalDateTime.now())) {
                 throw new InvalidReminderDateException(date);
             }
@@ -157,13 +154,13 @@ public class Controller {
             View.mostrarMensaje("No reminders are available.");
             return;
         }
-        
+
         for (Recordatory recordatorio : remindersList) {
             View.mostrarMensaje(recordatorio.toString());
         }
     }
 
-    private void modifyReminder() throws EmptyInputException, InvalidPriorityException, 
+    private void modifyReminder() throws EmptyInputException, InvalidPriorityException,
             DuplicateReminderException, InvalidReminderDateException {
         if (remindersList.isEmpty()) {
             View.mostrarMensaje("There are no reminders to modify.");
@@ -171,14 +168,14 @@ public class Controller {
         }
 
         View.mostrarMensaje("Enter the title of the reminder to be modified:");
-        String titulo = View.ingresarDatoString();
+        String title = View.ingresarDatoString();
         boolean encontrado = false;
 
         for (Recordatory recordatorio : remindersList) {
-            if (recordatorio.getTitulo().equals(titulo)) {
+            if (recordatorio.getTitulo().equals(title)) {
                 encontrado = true;
                 View.mostrarMensaje("Enter the new reminder data:");
-                
+
                 String nuevoTitulo = obtainASingleCertificate();
                 String nuevaDescripcion = obtainDescripcion();
                 LocalDateTime nuevaFecha = obtainValidDate();
@@ -195,7 +192,7 @@ public class Controller {
                 break;
             }
         }
-        
+
         if (!encontrado) {
             View.mostrarMensaje("");
         }
@@ -229,31 +226,10 @@ public class Controller {
     private void closeProgram() {
         View.mostrarMensaje("Closed program.");
     }
+
     
-    public static void addUsersEnglish(String es, String data){
-        texts_en.put("error_dialog", "Unexpected error: ");
-        texts_en.put("dialog_general_error", "Error: ");
-        texts_en.put("error_dialog", "Unexpected error: ");
-        texts_en.put("dialog_general_error", "Error: ");
-        texts_en.put("error_dialog", "Unexpected error: ");
-        texts_en.put("dialog_general_error", "Error: ");
-        texts_en.put("error_dialog", "Unexpected error: ");
-        texts_en.put("dialog_general_error", "Error: ");
-        texts_en.put("error_dialog", "Unexpected error: ");
-        texts_en.put("dialog_general_error", "Error: ");
-        texts_en.put("error_dialog", "Unexpected error: ");
-        texts_en.put("dialog_general_error", "Error: ");
-        texts_en.put("error_dialog", "Unexpected error: ");
-        texts_en.put("dialog_general_error", "Error: ");
-        texts_en.put("error_dialog", "Unexpected error: ");
-        texts_en.put("dialog_general_error", "Error: ");
-        texts_en.put("error_dialog", "Unexpected error: ");
-        texts_en.put("dialog_general_error", "Error: ");
-        texts_en.put("error_dialog", "Unexpected error: ");
-        texts_en.put("dialog_general_error", "Error: ");
-    }
-    public static void addUsersEspanish(String es, String data){
-        texts_es.put("error_dialog", "Error inesperado: ");
-        texts_es.put("dialog_general_error", "Error: ");
+
+    private int obtainGrade() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
