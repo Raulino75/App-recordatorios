@@ -15,7 +15,37 @@ public class Controller {
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     public static List<Recordatory> remindersList = new ArrayList<>();
 
-    public void run() {
+    public void menuPrincipal() {
+        int opcion1;
+        do {
+            try {
+                opcion1 = View.mostrarMenuCuentas();
+                switch (opcion1) {
+                    case 1:
+                        SistemaLogin.registrarUsuario();
+                        break;
+                    case 2:
+                        SistemaLogin.iniciarSesion();
+                        break;
+                    case 3:
+                        closeProgram();
+                        break;
+                    default:
+                        throw new InvalidMenuOptionException(opcion1);
+                }
+            } catch (EmptyInputException | InvalidMenuOptionException  e) {
+                View.mostrarMensaje("Error: " + e.getMessage());
+                opcion1 = 0;
+            } catch (Exception e) {
+                View.mostrarMensaje("" + e.getMessage());
+                opcion1 = 0;
+            }
+        } while (opcion1 != 3);
+
+    }
+
+
+    public void menuBasico() {
         int opcion;
         do {
             try {
@@ -96,7 +126,7 @@ public class Controller {
         String location = obtainLocation();
         int grade = obtainGrade();
 
-        Recordatory recordatorioPremium = new RecordatorioPremium();
+        RecordatorioPremium recordatorioPremium = new RecordatorioPremium();
         recordatorioPremium.setTitulo(titulo);
         recordatorioPremium.setDescripcion(description);
         recordatorioPremium.setFecha(date.format(DATE_FORMATTER));

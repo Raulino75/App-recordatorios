@@ -92,7 +92,30 @@ public class View {
             }
         }
     }
+    public static int mostrarMenuCuentas() {
+        while (true) {
+            try {
+                mostrarMensaje("\n=== Bienvenido ===");
+                mostrarMensaje("1. Registrarse");
+                mostrarMensaje("2. Inicia sesión");
+                mostrarMensaje("3. Salir");
+                
+                mostrarMensaje("\nSeleccione una opción (1-3):");
 
+                int opcion = ingresarDatoInt();
+                if (opcion < 1 || opcion > 5) {
+                    throw new IllegalArgumentException("Opción fuera de rango");
+                }
+                return opcion;
+
+            } catch (IllegalArgumentException e) {
+                mostrarMensaje("Error: Seleccione una opción entre 1 y 5");
+            } catch (EmptyInputException e) {
+                mostrarMensaje("Error: " + e.getMessage());
+            }
+        }
+    }
+    
     public static int mostrarMenuPrincipal() {
         while (true) {
             try {
@@ -104,7 +127,7 @@ public class View {
                     time = "Good Afternoon. Welcome to Ding!";
                 }
                 mostrarMensaje(time);
-                mostrarMensaje("\n=== SISTEMA DE RECORDATORIOS ===");
+                mostrarMensaje("\n=== SISTEMA DE RECORDATORIOS BASICOS===");
                 mostrarMensaje("1. Agregar recordatorio");
                 mostrarMensaje("2. Ver recordatorios");
                 mostrarMensaje("3. Modificar recordatorio");

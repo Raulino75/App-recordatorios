@@ -2,6 +2,6 @@
 package co.edu.konradlorenz.view;
 
 
-public class SingUp {
+public class s​​​​ingUp {
     
 }
