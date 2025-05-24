@@ -92,10 +92,16 @@ public class Controller {
     public void addReminder() throws EmptyInputException, InvalidPriorityException, InvalidMenuOptionException,
             DuplicateReminderException, InvalidReminderDateException {
         
-        if (home.txtAreaTitulo is null){
-            throw EmptyInputException;
-           }
-        
+        //TODO: CAMBIAR LOGICA DE INSERCION DE DATOS Y MANEJO DE EXCEPCIONES
+//        try
+//        String titulo = home.txtAreaTitulo.getText();
+//        
+//        if (titulo is null){
+//            throw EmptyInputException;
+//           }
+//        catch (EmptyInputException e){
+//                //asdihask
+//                }
         View.mostrarMensaje("Select the type of reminder to add:");
         View.mostrarMensaje("1. Basic Recordatory");
         View.mostrarMensaje("2. Premium Reminder.");
