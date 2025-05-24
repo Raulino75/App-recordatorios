@@ -1,6 +1,7 @@
 package co.edu.konradlorenz.controller;
 
 import co.edu.konradlorenz.model.*;
+import co.edu.konradlorenz.view.Home;
 import co.edu.konradlorenz.view.View;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,13 @@ public class Controller {
     
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     public static List<Recordatory> remindersList = new ArrayList<>();
+    
+    private Home home;
+    
+    public void run(){
+        this.home = new Home(this);
+        home.setVisible(true);
+    }
 
     public void menuPrincipal() {
         int opcion1;
@@ -81,8 +89,13 @@ public class Controller {
         } while (opcion != 5);
     }
 
-    private void addReminder() throws EmptyInputException, InvalidPriorityException, InvalidMenuOptionException,
+    public void addReminder() throws EmptyInputException, InvalidPriorityException, InvalidMenuOptionException,
             DuplicateReminderException, InvalidReminderDateException {
+        
+        if (home.txtAreaTitulo is null){
+            throw EmptyInputException;
+           }
+        
         View.mostrarMensaje("Select the type of reminder to add:");
         View.mostrarMensaje("1. Basic Recordatory");
         View.mostrarMensaje("2. Premium Reminder.");
