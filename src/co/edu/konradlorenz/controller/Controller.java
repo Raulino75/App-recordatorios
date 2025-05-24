@@ -4,6 +4,7 @@ import co.edu.konradlorenz.model.*;
 import co.edu.konradlorenz.view.View;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -156,17 +157,24 @@ public class Controller {
     }
 
     private LocalDateTime obtainValidDate() throws InvalidReminderDateException, EmptyInputException {
-        View.mostrarMensaje("Enter the date (DD/MM/YYYYYY):");
-        String fechaStr = View.ingresarDatoString();
-        try {
-            LocalDateTime date = LocalDateTime.parse(fechaStr, DateTimeFormatter.ofPattern("dd/MM/yyyy")); // FIXME
-            if (date.isBefore(LocalDateTime.now())) {
-                throw new InvalidReminderDateException(date);
+        boolean validDate = false;
+        LocalDate date = null;
+        
+        while (!validDate) {
+            View.mostrarMensaje("Enter the date (DD/MM/YYYY):");
+            String fechaStr = View.ingresarDatoString();
+            try {
+                date = LocalDate.parse(fechaStr, DATE_FORMATTER);
+                if (date.isBefore(LocalDate.now())) {
+                    View.mostrarMensaje("The date cannot be in the past. Please try again.");
+                    continue;
+                }
+                validDate = true;
+            } catch (DateTimeParseException e) {
+                View.mostrarMensaje("Invalid date format. Please use DD/MM/YYYY format.");
             }
-            return date;
-        } catch (DateTimeParseException e) {
-            throw new InvalidReminderDateException(null);
         }
+        return date.atStartOfDay(); // Convert LocalDate to LocalDateTime at start of day
     }
 
     private Priority obtainPriority() throws InvalidPriorityException, EmptyInputException {
@@ -197,60 +205,76 @@ public class Controller {
             return;
         }
 
-        View.mostrarMensaje("Enter the title of the reminder to be modified:");
-        String title = View.ingresarDatoString();
         boolean encontrado = false;
+        Recordatory recordatorioAModificar = null;
 
-        for (Recordatory recordatorio : remindersList) {
-            if (recordatorio.getTitulo().equals(title)) {
-                encontrado = true;
-                View.mostrarMensaje("Enter the new reminder data:");
+        while (!encontrado) {
+            try {
+                View.mostrarMensaje("Enter the title of the reminder to be modified:");
+                String title = View.ingresarDatoString();
 
-                String nuevoTitulo = obtainASingleCertificate();
-                String nuevaDescripcion = obtainDescripcion();
-                LocalDateTime nuevaFecha = obtainValidDate();
-                Priority nuevaPrioridad = obtainPriority();
-                String nuevaUbicacion = obtainLocation();
+                for (Recordatory recordatorio : remindersList) {
+                    if (recordatorio.getTitulo().equals(title)) {
+                        encontrado = true;
+                        recordatorioAModificar = recordatorio;
+                        break;
+                    }
+                }
 
-                recordatorio.setTitulo(nuevoTitulo);
-                recordatorio.setDescripcion(nuevaDescripcion);
-                recordatorio.setFecha(nuevaFecha.format(DATE_FORMATTER));
-                recordatorio.setPrioridad(nuevaPrioridad);
-                recordatorio.setUbicacion(nuevaUbicacion);
-
-                View.mostrarMensaje("Reminder successfully modified.");
-                break;
+                if (!encontrado) {
+                    throw new ReminderNotFoundException("Reminder with title '" + title + "' not found.");
+                }
+            } catch (ReminderNotFoundException e) {
+                View.mostrarMensaje(e.getMessage() + " Please try again.");
             }
         }
 
-        if (!encontrado) {
-            View.mostrarMensaje("");
-        }
-    }
+        View.mostrarMensaje("Enter the new reminder data:");
+        String nuevoTitulo = obtainASingleCertificate();
+        String nuevaDescripcion = obtainDescripcion();
+        LocalDateTime nuevaFecha = obtainValidDate();
+        Priority nuevaPrioridad = obtainPriority();
+        String nuevaUbicacion = obtainLocation();
 
-    private void eliminarRecordatory() throws EmptyInputException {
+        recordatorioAModificar.setTitulo(nuevoTitulo);
+        recordatorioAModificar.setDescripcion(nuevaDescripcion);
+        recordatorioAModificar.setFecha(nuevaFecha.format(DATE_FORMATTER));
+        recordatorioAModificar.setPrioridad(nuevaPrioridad);
+        recordatorioAModificar.setUbicacion(nuevaUbicacion);
+
+        View.mostrarMensaje("Reminder successfully modified.");
+    }    private void eliminarRecordatory() throws EmptyInputException {
         if (remindersList.isEmpty()) {
-            View.mostrarMensaje("A reminder with that title was not found.");
+            View.mostrarMensaje("There are no reminders to delete.");
             return;
         }
 
-        View.mostrarMensaje("Enter the title of the reminder to delete:");
-        String titulo = View.ingresarDatoString();
-        Recordatory aEliminar = null;
+        boolean encontrado = false;
+        Recordatory recordatorioAEliminar = null;
 
-        for (Recordatory r : remindersList) {
-            if (r.getTitulo().equals(titulo)) {
-                aEliminar = r;
-                break;
+        while (!encontrado) {
+            try {
+                View.mostrarMensaje("Enter the title of the reminder to delete:");
+                String titulo = View.ingresarDatoString();
+
+                for (Recordatory r : remindersList) {
+                    if (r.getTitulo().equals(titulo)) {
+                        encontrado = true;
+                        recordatorioAEliminar = r;
+                        break;
+                    }
+                }
+
+                if (!encontrado) {
+                    throw new ReminderNotFoundException(titulo);
+                }
+            } catch (ReminderNotFoundException e) {
+                View.mostrarMensaje(e.getMessage() + " Please try again.");
             }
         }
 
-        if (aEliminar != null) {
-            remindersList.remove(aEliminar);
-            View.mostrarMensaje("Reminder successfully removed.");
-        } else {
-            View.mostrarMensaje("A reminder with that title was not found.");
-        }
+        remindersList.remove(recordatorioAEliminar);
+        View.mostrarMensaje("Reminder successfully removed.");
     }
 
     private void closeProgram() {

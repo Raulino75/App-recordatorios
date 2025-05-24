@@ -4,13 +4,15 @@ import co.edu.konradlorenz.controller.Controller;
 import co.edu.konradlorenz.model.*;
 import java.time.LocalTime;
 import java.util.*;
+import javax.swing.JFrame;
 
 public class View {
 
     private static final Scanner scanner = new Scanner(System.in);
-
     private static LocalTime currentTime = LocalTime.now();
     private static LocalTime timeLimit = LocalTime.of(12, 0);
+    
+   
 
     public static void mostrarMensaje(String mensaje) {
         System.out.println(mensaje);
@@ -92,6 +94,7 @@ public class View {
             }
         }
     }
+
     public static int mostrarMenuCuentas() {
         while (true) {
             try {
@@ -99,7 +102,7 @@ public class View {
                 mostrarMensaje("1. Registrarse");
                 mostrarMensaje("2. Inicia sesión");
                 mostrarMensaje("3. Salir");
-                
+
                 mostrarMensaje("\nSeleccione una opción (1-3):");
 
                 int opcion = ingresarDatoInt();
@@ -115,7 +118,7 @@ public class View {
             }
         }
     }
-    
+
     public static int mostrarMenuPrincipal() {
         while (true) {
             try {

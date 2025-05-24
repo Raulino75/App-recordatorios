@@ -10,6 +10,6 @@ package co.edu.konradlorenz.model;
  */
 public class ReminderNotFoundException extends Exception{
     public ReminderNotFoundException(String title) {
-        super("No se encontró ningún recordatorio con el título: \"" + title + "\".");
+        super("No reminder with the title was found: \"" + title + "\".");
     }
 }
