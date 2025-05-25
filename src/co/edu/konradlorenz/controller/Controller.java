@@ -7,6 +7,7 @@ import java.time.*;
 import java.time.format.*;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 public class Controller {
 
@@ -204,6 +205,6 @@ public class Controller {
         remindersList.add(new BasicReminder("Recordatorio 2", "Descripción 2", "02/02/2023", Priority.MEDIUM, "Ubicación 2"));
         remindersList.add(new BasicReminder("Recordatorio 3", "Descripción 3", "03/03/2023", Priority.HIGH, "Ubicación 3"));
         remindersList.add(new BasicReminder("Recordatorio 4", "Descripción 4", "04/04/2023", Priority.LOW, "Ubicación 4"));
-        remindersList.add(new PremiumReminder("Recordatorio 5", "Descripción 5", "05/05/2023", Priority.MEDIUM, "Ubicación 5",99999999,50));
+        remindersList.add(new PremiumReminder("Recordatorio 5", "Descripción 5", "05/05/2023", Priority.MEDIUM, "Ubicación 5",50));
     }
 }
