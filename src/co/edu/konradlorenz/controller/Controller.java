@@ -67,86 +67,6 @@ public class Controller {
         }
     }
 //
-//    public void createBasicReminder() throws DuplicateReminderException, InvalidReminderDateException,
-//        EmptyInputException, InvalidPriorityException {
-//    
-//    String title = home.getTitle();
-//    if (title == null || title.trim().isEmpty()) {
-//        throw new EmptyInputException("Title cannot be empty.");
-//    }
-//
-//    for (Recordatory r : remindersList) {
-//        if (r.getTitulo().equals(title)) {
-//            throw new DuplicateReminderException("The title '" + title + "' is already in use.");
-//        }
-//    }
-//
-//    String description = home.getDescription();
-//    LocalDateTime date = home.getDate();
-//    if (date == null || date.isBefore(LocalDateTime.now())) {
-//        throw new InvalidReminderDateException("Date must be in the future.");
-//    }
-//
-//    Priority priority = home.getPriority();
-//    if (priority == null) {
-//        throw new InvalidPriorityException("Priority must be selected.");
-//    }
-//
-//    String location = home.getLocation();
-//
-//    Recordatory basicReminder = new RecordatorioBasico();
-//    basicReminder.setTitulo(title);
-//    basicReminder.setDescripcion(description);
-//    basicReminder.setFecha(date.format(DATE_FORMATTER));
-//    basicReminder.setPrioridad(priority);
-//    basicReminder.setUbicacion(location);
-//
-//    remindersList.add(basicReminder);
-//    home.showMessage("Basic reminder successfully created.");
-//}
-//
-//
-//   public void createPremiumReminder() throws DuplicateReminderException, InvalidReminderDateException,
-//        EmptyInputException, InvalidPriorityException {
-//
-//    String title = home.getTitle();
-//    if (title == null || title.trim().isEmpty()) {
-//        throw new EmptyInputException("Title cannot be empty.");
-//    }
-//
-//    for (Recordatory r : remindersList) {
-//        if (r.getTitulo().equals(title)) {
-//            throw new DuplicateReminderException("The title '" + title + "' is already in use.");
-//        }
-//    }
-//
-//    String description = home.getDescription();
-//    LocalDateTime date = home.getDate();
-//    if (date == null || date.isBefore(LocalDateTime.now())) {
-//        throw new InvalidReminderDateException("Date must be in the future.");
-//    }
-//
-//    Priority priority = home.getPriority();
-//    if (priority == null) {
-//        throw new InvalidPriorityException("Priority must be selected.");
-//    }
-//
-//    String location = home.getLocation();
-//    int grade = home.getGrade(); 
-//
-//    RecordatorioPremium premiumReminder = new RecordatorioPremium();
-//    premiumReminder.setTitulo(title);
-//    premiumReminder.setDescripcion(description);
-//    premiumReminder.setFecha(date.format(DATE_FORMATTER));
-//    premiumReminder.setPrioridad(priority);
-//    premiumReminder.setUbicacion(location);
-//    premiumReminder.setCalificaciones(grade);
-//
-//    remindersList.add(premiumReminder);
-//    home.showMessage("Premium reminder successfully created.");
-//}
-//
-//
 //   public String obtainASingleCertificate() throws DuplicateReminderException, EmptyInputException {
 //    String title = home.getTitle();
 //
@@ -207,18 +127,19 @@ public class Controller {
 //}
 //
 //
-//   public void viewReminders() {
-//    if (remindersList.isEmpty()) {
-//        home.showMessage("No reminders are available.");
-//        return;
-//    }
-//
-//    StringBuilder allReminders = new StringBuilder();
-//    for (Recordatory reminder : remindersList) {
-//        allReminders.append(reminder.toString()).append("\n\n");
-//    }
-//    home.showMessage(allReminders.toString());
-//}
+    public String viewReminders() {
+        if (remindersList.isEmpty()) {
+            System.out.println("No reminders are available.");
+            //TODO: Add JPane de advertencia
+            return "";
+        }
+
+        StringBuilder allReminders = new StringBuilder();
+        for (Recordatory reminder : remindersList) {
+            allReminders.append(reminder.toString()).append("\n\n");
+        }
+        return allReminders.toString();
+    }
 //
 //
 //    public void modifyReminder() throws EmptyInputException, InvalidPriorityException,

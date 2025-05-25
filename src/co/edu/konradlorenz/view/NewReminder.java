@@ -117,21 +117,25 @@ public class NewReminder extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("New Reminder");
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
-        setMaximumSize(new java.awt.Dimension(600, 600));
+        setMaximumSize(new java.awt.Dimension(800, 800));
+        setMinimumSize(new java.awt.Dimension(800, 800));
         setModal(true);
         setName("New Reminder"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(800, 800));
         setResizable(false);
-        setSize(new java.awt.Dimension(600, 600));
+        setSize(new java.awt.Dimension(800, 800));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlNewReminder.setBackground(new java.awt.Color(237, 189, 178));
+        pnlNewReminder.setMinimumSize(new java.awt.Dimension(800, 800));
+        pnlNewReminder.setPreferredSize(new java.awt.Dimension(800, 800));
         pnlNewReminder.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblNewReminder.setFont(new java.awt.Font("Helvetica Neue", 1, 48)); // NOI18N
         lblNewReminder.setForeground(new java.awt.Color(104, 0, 0));
         lblNewReminder.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNewReminder.setText("New Reminder");
-        pnlNewReminder.add(lblNewReminder, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 470, 50));
+        pnlNewReminder.add(lblNewReminder, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 780, 60));
 
         lblPlan.setBackground(new java.awt.Color(104, 0, 0));
         lblPlan.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
@@ -253,7 +257,7 @@ public class NewReminder extends javax.swing.JDialog {
         imgTacoBell.setIcon(new javax.swing.ImageIcon(getClass().getResource("/co/edu/konradlorenz/view/img/ding-logo-semitransparent 500x500.png"))); // NOI18N
         pnlNewReminder.add(imgTacoBell, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 600));
 
-        getContentPane().add(pnlNewReminder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 600));
+        getContentPane().add(pnlNewReminder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 800));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

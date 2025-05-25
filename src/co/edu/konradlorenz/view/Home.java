@@ -101,9 +101,9 @@ public class Home extends javax.swing.JFrame {
         btnEditReminder = new javax.swing.JButton();
         btnDeleteReminder = new javax.swing.JButton();
         pnlCentral = new javax.swing.JPanel();
-        imgDingLogo500 = new javax.swing.JLabel();
         spnRemindersScrollPane = new javax.swing.JScrollPane();
         lstRemindersList = new javax.swing.JList<>();
+        imgDingLogo500 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ding App");
@@ -194,25 +194,20 @@ public class Home extends javax.swing.JFrame {
         pnlCentral.setMinimumSize(new java.awt.Dimension(22, 22));
         pnlCentral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        imgDingLogo500.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imgDingLogo500.setIcon(new javax.swing.ImageIcon(getClass().getResource("/co/edu/konradlorenz/view/img/ding-logo-semitransparent 500x500.png"))); // NOI18N
-        imgDingLogo500.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        pnlCentral.add(imgDingLogo500, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 620));
-
-        spnRemindersScrollPane.setBorder(null);
         spnRemindersScrollPane.setAlignmentX(0.0F);
         spnRemindersScrollPane.setAlignmentY(0.0F);
         spnRemindersScrollPane.setMinimumSize(new java.awt.Dimension(22, 22));
         spnRemindersScrollPane.setPreferredSize(new java.awt.Dimension(1048, 620));
 
-        lstRemindersList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        lstRemindersList.setModel(control.remindersList);
         spnRemindersScrollPane.setViewportView(lstRemindersList);
 
         pnlCentral.add(spnRemindersScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1030, 600));
+
+        imgDingLogo500.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        imgDingLogo500.setIcon(new javax.swing.ImageIcon(getClass().getResource("/co/edu/konradlorenz/view/img/ding-logo-semitransparent 500x500.png"))); // NOI18N
+        imgDingLogo500.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pnlCentral.add(imgDingLogo500, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, -10, 1050, 620));
 
         pnlHome.add(pnlCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, -1, -1));
 
@@ -247,7 +242,9 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddReminderActionPerformed
 
     private void btnEditReminderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditReminderActionPerformed
-        // TODO add your handling code here:
+//        editReminder = new EditReminder(this, true, control); // this= Home (le dice a quien pertenece esta ventana), true= modular (desactiva Home mientras esté abierto), control= instancia del control unica
+//        editReminder.setLocationRelativeTo(null); // lo centra en la pantalla
+//        editReminder.setVisible(true); // lo hace visible
     }//GEN-LAST:event_btnEditReminderActionPerformed
 
     /**
