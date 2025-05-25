@@ -45,7 +45,8 @@ public class Controller {
             if (date.isBefore(LocalDate.now())) {
 //                throw new InvalidReminderDateException("The date cannot be in the past."); //FIXME:
             }
-            Priority priority = (Priority) home.getNewReminder().getCmbPriority().getSelectedItem();
+
+            Priority priority = Priority.valueOf((String) home.getNewReminder().getCmbPriority().getSelectedItem());
             String location = home.getNewReminder().getTxtLocation().getText();
             boolean esPremium = home.getNewReminder().getCmbPlan().getSelectedItem().equals("PREMIUM") ? true : false;
 
@@ -77,14 +78,16 @@ public class Controller {
 //        } catch (InvalidPriorityException e {
 //
 //        }
+        
     }
 
     public DefaultListModel<String> viewReminders() {
         DefaultListModel<String> listModel = new DefaultListModel<>();
 
         if (remindersList.isEmpty()) {
+
             System.out.println("No reminders are available.");
-            // TODO: Add JPane de advertencia
+            View.mostrarMensaje(null, "No reminders are available.", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         for (Reminder r : remindersList) {
