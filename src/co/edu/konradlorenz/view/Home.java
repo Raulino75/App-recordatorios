@@ -198,8 +198,12 @@ public class Home extends javax.swing.JFrame {
         spnRemindersScrollPane.setMinimumSize(new java.awt.Dimension(22, 22));
         spnRemindersScrollPane.setPreferredSize(new java.awt.Dimension(1048, 620));
 
-        lstRemindersList.setModel(control.remindersList);
+        lstRemindersList.setModel(control.viewReminders());
+        lstRemindersList.setAlignmentX(0.0F);
+        lstRemindersList.setAlignmentY(0.0F);
         spnRemindersScrollPane.setViewportView(lstRemindersList);
+        spnRemindersScrollPane.setVisible(false);
+        lstRemindersList.setVisible(false);
 
         pnlCentral.add(spnRemindersScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1030, 600));
 
