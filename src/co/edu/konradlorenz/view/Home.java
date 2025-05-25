@@ -19,8 +19,8 @@ public class Home extends javax.swing.JFrame {
     EditReminder editReminder;
     
     public Home(Controller control) {
-        initComponents();
         this.control = control;
+        initComponents();
     }
 
     public JButton getBtnAddReminder() {
@@ -195,7 +195,6 @@ public class Home extends javax.swing.JFrame {
 
         spnRemindersScrollPane.setAlignmentX(0.0F);
         spnRemindersScrollPane.setAlignmentY(0.0F);
-        spnRemindersScrollPane.setMinimumSize(new java.awt.Dimension(22, 22));
         spnRemindersScrollPane.setPreferredSize(new java.awt.Dimension(1048, 620));
 
         lstRemindersList.setModel(control.viewReminders());

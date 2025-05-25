@@ -21,8 +21,8 @@ public class EditReminder extends javax.swing.JDialog {
     
     public EditReminder(java.awt.Frame parent, boolean modal, Controller control) {
         super(parent, modal);
-        initComponents();
         this.control = control;
+        initComponents();
     }
 
     public JButton getBtnCancel() {

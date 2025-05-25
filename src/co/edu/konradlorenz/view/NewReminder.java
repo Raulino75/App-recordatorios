@@ -21,8 +21,8 @@ public class NewReminder extends javax.swing.JDialog {
     
     public NewReminder(java.awt.Frame parent, boolean modal, Controller control) {
         super(parent, modal);
-        initComponents();
         this.control = control;
+        initComponents();
         
     }
 
