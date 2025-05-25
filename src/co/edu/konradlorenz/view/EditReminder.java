@@ -10,11 +10,11 @@ import co.edu.konradlorenz.controller.Controller;
  *
  * @author dulce
  */
-public class NewReminder extends javax.swing.JDialog {
+public class EditReminder extends javax.swing.JDialog {
 
     Controller control;
     
-    public NewReminder(java.awt.Frame parent, boolean modal, Controller control) {
+    public EditReminder(java.awt.Frame parent, boolean modal, Controller control) {
         super(parent, modal);
         initComponents();
         this.control = control;
@@ -45,15 +45,15 @@ public class NewReminder extends javax.swing.JDialog {
         txtaDescription = new javax.swing.JTextArea();
         calDateCalendar = new com.toedter.calendar.JCalendar();
         btnCancel = new javax.swing.JButton();
-        btnAdd = new javax.swing.JButton();
+        btnEdit = new javax.swing.JButton();
         imgTacoBell = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("New Reminder");
+        setTitle("Edit Reminder");
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setMaximumSize(new java.awt.Dimension(600, 600));
         setModal(true);
-        setName("New Reminder"); // NOI18N
+        setName("Edit Reminder"); // NOI18N
         setResizable(false);
         setSize(new java.awt.Dimension(600, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -64,7 +64,7 @@ public class NewReminder extends javax.swing.JDialog {
         lblNewReminder.setFont(new java.awt.Font("Helvetica Neue", 1, 48)); // NOI18N
         lblNewReminder.setForeground(new java.awt.Color(104, 0, 0));
         lblNewReminder.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNewReminder.setText("New Reminder");
+        lblNewReminder.setText("Edit Reminder");
         jPanel1.add(lblNewReminder, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 470, 50));
 
         lblPlan.setBackground(new java.awt.Color(104, 0, 0));
@@ -165,15 +165,16 @@ public class NewReminder extends javax.swing.JDialog {
         });
         jPanel1.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 540, 120, 40));
 
-        btnAdd.setBackground(new java.awt.Color(0, 204, 51));
-        btnAdd.setForeground(new java.awt.Color(0, 0, 0));
-        btnAdd.setText("ADD");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+        btnEdit.setBackground(new java.awt.Color(102, 0, 255));
+        btnEdit.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        btnEdit.setForeground(new java.awt.Color(255, 255, 255));
+        btnEdit.setText("EDIT");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
+                btnEditActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 540, 120, 40));
+        jPanel1.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 540, 120, 40));
 
         imgTacoBell.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         imgTacoBell.setIcon(new javax.swing.ImageIcon(getClass().getResource("/co/edu/konradlorenz/view/img/ding-logo-semitransparent 500x500.png"))); // NOI18N
@@ -204,17 +205,17 @@ public class NewReminder extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelActionPerformed
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddActionPerformed
+    }//GEN-LAST:event_btnEditActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnEdit;
     private com.toedter.calendar.JCalendar calDateCalendar;
     private javax.swing.JComboBox<String> cmbPlan;
     private javax.swing.JComboBox<String> cmbPriority;
