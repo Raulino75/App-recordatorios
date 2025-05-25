@@ -18,34 +18,7 @@ public class Controller {
         home.setVisible(true);
     }
 
-    public void menuPrincipal() {
-        int opcion1;
-        do {
-            try {
-                opcion1 = View.mostrarMenuCuentas();
-                switch (opcion1) {
-                    case 1:
-                        SistemaLogin.registrarUsuario();
-                        break;
-                    case 2:
-                        SistemaLogin.iniciarSesion();
-                        break;
-                    case 3:
-                        closeProgram();
-                        break;
-                    default:
-                        throw new InvalidMenuOptionException(opcion1);
-                }
-            } catch (EmptyInputException | InvalidMenuOptionException e) {
-                View.mostrarMensaje("Error: " + e.getMessage());
-                opcion1 = 0;
-            } catch (Exception e) {
-                View.mostrarMensaje("" + e.getMessage());
-                opcion1 = 0;
-            }
-        } while (opcion1 != 3);
-
-    }
+    
 
     public void menuBasico() {
         int opcion;
@@ -63,7 +36,7 @@ public class Controller {
                         modifyReminder();
                         break;
                     case 4:
-                        eliminarRecordatory();
+                        deleteReminder();
                         break;
                     case 5:
                         closeProgram();
