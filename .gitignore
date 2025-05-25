@@ -3,7 +3,8 @@
 
 nbproject/private/
 
-
-
 .DS_Store
+
 /dist/
+
+build/built-jar.properties

@@ -312,6 +312,13 @@ public class NewReminder extends javax.swing.JDialog {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         control.addReminder();
+        
+        // Cierra la ventana de nuevo recordatorio
+        this.dispose();
+        
+        // Obtiene la ventana principal (Home) y actualiza la lista
+        Home home = (Home) this.getParent();
+        home.updateRemindersList();
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void txtGradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGradeActionPerformed

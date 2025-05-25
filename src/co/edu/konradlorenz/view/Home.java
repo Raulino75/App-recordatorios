@@ -234,10 +234,12 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTranslateActionPerformed
 
     private void btnShowAllRemindersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowAllRemindersActionPerformed
-        spnRemindersScrollPane.setVisible(true);
-        lstRemindersList.setVisible(true);
-        control.viewReminders();
+        // Actualiza el modelo de la lista con los recordatorios
+        lstRemindersList.setModel(control.viewReminders());
         
+        // Hace visible el scroll pane y la lista
+        spnRemindersScrollPane.setVisible(true);
+        lstRemindersList.setVisible(true);       
     }//GEN-LAST:event_btnShowAllRemindersActionPerformed
 
     private void btnAddReminderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddReminderActionPerformed
@@ -252,6 +254,15 @@ public class Home extends javax.swing.JFrame {
 //        editReminder.setVisible(true); // lo hace visible
     }//GEN-LAST:event_btnEditReminderActionPerformed
 
+    public void updateRemindersList() {
+        // Actualiza el modelo de la lista con los recordatorios
+        lstRemindersList.setModel(control.viewReminders());
+        
+        // Hace visible el scroll pane y la lista
+        spnRemindersScrollPane.setVisible(true);
+        lstRemindersList.setVisible(true);
+        
+    }
     /**
      * @param args the command line arguments
      */
