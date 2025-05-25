@@ -3,9 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/PC/Desktop/RAUL%20ARTURO/PROGRAMAS/Divertixx/src/co/edu/konradlorenz/model/RecordatorioBasico.java</file>
-            <file>file:/C:/Users/PC/Desktop/RAUL%20ARTURO/PROGRAMAS/Divertixx/src/co/edu/konradlorenz/controller/AplMain.java</file>
-            <file>file:/C:/Users/PC/Desktop/RAUL%20ARTURO/PROGRAMAS/Divertixx/src/co/edu/konradlorenz/model/RecordatorioPremium.java</file>
+            <file>file:/C:/Users/dulce/OneDrive/Documentos/Gh/App-recordatorios/src/co/edu/konradlorenz/controller/Controller.java</file>
+            <file>file:/C:/Users/dulce/OneDrive/Documentos/Gh/App-recordatorios/src/co/edu/konradlorenz/view/Home.java</file>
+            <file>file:/C:/Users/dulce/OneDrive/Documentos/Gh/App-recordatorios/src/co/edu/konradlorenz/view/EditReminder.java</file>
+            <file>file:/C:/Users/dulce/OneDrive/Documentos/Gh/App-recordatorios/src/co/edu/konradlorenz/model/PremiumReminder.java</file>
+            <file>file:/C:/Users/dulce/OneDrive/Documentos/Gh/App-recordatorios/src/co/edu/konradlorenz/view/NewReminder.java</file>
+            <file>file:/C:/Users/dulce/OneDrive/Documentos/Gh/App-recordatorios/src/co/edu/konradlorenz/view/View.java</file>
+            <file>file:/C:/Users/dulce/OneDrive/Documentos/Gh/App-recordatorios/src/co/edu/konradlorenz/controller/AplMain.java</file>
+            <file>file:/C:/Users/dulce/OneDrive/Documentos/Gh/App-recordatorios/src/co/edu/konradlorenz/model/Dictionary.java</file>
+            <file>file:/C:/Users/dulce/OneDrive/Documentos/Gh/App-recordatorios/src/co/edu/konradlorenz/model/Reminder.java</file>
+            <file>file:/C:/Users/dulce/OneDrive/Documentos/Gh/App-recordatorios/src/co/edu/konradlorenz/model/BasicReminder.java</file>
+            <file>file:/C:/Users/dulce/OneDrive/Documentos/Gh/App-recordatorios/src/co/edu/konradlorenz/model/DuplicateReminderException.java</file>
+            <file>file:/C:/Users/dulce/OneDrive/Documentos/Gh/App-recordatorios/src/co/edu/konradlorenz/model/EmptyInputException.java</file>
+            <file>file:/C:/Users/dulce/OneDrive/Documentos/Gh/App-recordatorios/src/co/edu/konradlorenz/model/InvalidMenuOptionException.java</file>
+            <file>file:/C:/Users/dulce/OneDrive/Documentos/Gh/App-recordatorios/src/co/edu/konradlorenz/model/InvalidPriorityException.java</file>
+            <file>file:/C:/Users/dulce/OneDrive/Documentos/Gh/App-recordatorios/src/co/edu/konradlorenz/model/Priority.java</file>
+            <file>file:/C:/Users/dulce/OneDrive/Documentos/Gh/App-recordatorios/src/co/edu/konradlorenz/model/TypeAccount.java</file>
+            <file>file:/C:/Users/dulce/OneDrive/Documentos/Gh/App-recordatorios/src/co/edu/konradlorenz/model/InvalidReminderDateException.java</file>
         </group>
     </open-files>
 </project-private>

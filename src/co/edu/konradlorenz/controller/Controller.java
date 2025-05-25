@@ -42,9 +42,8 @@ public class Controller {
             Date selectedDate = home.getNewReminder().getCalDateCalendar().getDate();
             LocalDate date = selectedDate.toInstant()
                     .atZone(ZoneId.systemDefault())
-                    .toLocalDate();
-            if (date.isBefore(LocalDate.now())) {
-//                throw new InvalidReminderDateException("The date cannot be in the past."); //FIXME:
+                    .toLocalDate();            if (date.isBefore(LocalDate.now())) {
+                throw new InvalidReminderDateException("The date cannot be in the past.");
             }
 
             Priority priority = Priority.valueOf((String) home.getNewReminder().getCmbPriority().getSelectedItem());
@@ -70,16 +69,17 @@ public class Controller {
             remindersList.add(reminder);
             System.out.println("Recordatorio guardado con éxito.");
         } catch (EmptyInputException e) {
-
+            View.mostrarMensaje(home, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (InvalidReminderDateException e) {
+            View.mostrarMensaje(home, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         } catch (DuplicateReminderException e) {
-
-        } //FIXME: Arrojar las exceptions
-//        catch (InvalidReminderDateException e) {
-//
-//        } catch (InvalidPriorityException e {
-//
-//        }
-        
+            View.mostrarMensaje(home, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        catch (NumberFormatException e) {
+            View.mostrarMensaje(home, "El campo de calificaciones debe ser un número entero.", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            View.mostrarMensaje(home, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public DefaultListModel<String> viewReminders() {
@@ -151,22 +151,6 @@ public class Controller {
         }
     }
 }
-//
-//    String newDescription = home.getDescription();
-//    LocalDateTime newDate = home.getDate();  
-//    Priority newPriority = home.getPriority();
-//    String newLocation = home.getLocation();
-//
-//    reminderToModify.setTitulo(newTitle);
-//    reminderToModify.setDescripcion(newDescription);
-//    reminderToModify.setFecha(newDate.format(DATE_FORMATTER));
-//    reminderToModify.setPrioridad(newPriority);
-//    reminderToModify.setUbicacion(newLocation);
-//
-//    home.showMessage("Reminder successfully modified.");
-//}
-//
-//
     public void deleteReminder(String title) {
         if (remindersList.isEmpty()) {
             View.mostrarMensaje(home, "No hay recordatorios para eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -192,15 +176,7 @@ public class Controller {
         remindersList.remove(reminderToDelete);
         View.mostrarMensaje(home, "Recordatorio eliminado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
     }
-//
-//    public void closeProgram() {
-//    home.showMessage("Program closed.");
-//}
-//
-//
-//    private int obtainGrade() {
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-//    }
+
 
     private void datosDePrueba() {
         remindersList.add(new BasicReminder("Recordatorio 1", "Descripción 1", "01/01/2023", Priority.LOW, "Ubicación 1"));
