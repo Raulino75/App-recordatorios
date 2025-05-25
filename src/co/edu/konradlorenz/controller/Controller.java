@@ -15,6 +15,7 @@ public class Controller {
 
     public void run() {
         this.home = new Home(this);
+        home.setLocationRelativeTo(null);
         home.setVisible(true);
     }
 

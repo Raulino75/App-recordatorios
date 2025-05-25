@@ -31,6 +31,7 @@ public class Home extends javax.swing.JFrame {
     private void initComponents() {
 
         pnlHome = new javax.swing.JPanel();
+        btnTranslate = new javax.swing.JButton();
         pnlDingLogo = new javax.swing.JPanel();
         lblDingLogo = new javax.swing.JLabel();
         pnlControlPanel = new javax.swing.JPanel();
@@ -40,13 +41,34 @@ public class Home extends javax.swing.JFrame {
         btnDeleteReminder = new javax.swing.JButton();
         pnlCentral = new javax.swing.JPanel();
         imgDingLogo500 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        spnRemindersScrollPane = new javax.swing.JScrollPane();
+        lstRemindersList = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Ding App");
         setBackground(new java.awt.Color(237, 189, 178));
+        setBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        setMaximumSize(new java.awt.Dimension(1280, 720));
+        setMinimumSize(new java.awt.Dimension(1280, 720));
+        setName("Ding App"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
 
         pnlHome.setBackground(new java.awt.Color(104, 0, 0));
+        pnlHome.setBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        pnlHome.setMaximumSize(new java.awt.Dimension(1280, 720));
+        pnlHome.setMinimumSize(new java.awt.Dimension(1280, 720));
+        pnlHome.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnTranslate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/co/edu/konradlorenz/view/img/G_Translate_Icon_50x50.png"))); // NOI18N
+        btnTranslate.setPreferredSize(new java.awt.Dimension(70, 70));
+        btnTranslate.setRolloverEnabled(false);
+        btnTranslate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTranslateActionPerformed(evt);
+            }
+        });
+        pnlHome.add(btnTranslate, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 10, -1, -1));
 
         pnlDingLogo.setBackground(new java.awt.Color(237, 189, 178));
         pnlDingLogo.setPreferredSize(new java.awt.Dimension(200, 70));
@@ -70,8 +92,11 @@ public class Home extends javax.swing.JFrame {
             .addComponent(lblDingLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        pnlHome.add(pnlDingLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
         pnlControlPanel.setBackground(new java.awt.Color(237, 189, 178));
         pnlControlPanel.setPreferredSize(new java.awt.Dimension(200, 600));
+        pnlControlPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnAddReminder.setBackground(new java.awt.Color(104, 0, 0));
         btnAddReminder.setText("Add Reminder");
@@ -80,6 +105,7 @@ public class Home extends javax.swing.JFrame {
                 btnAddReminderActionPerformed(evt);
             }
         });
+        pnlControlPanel.add(btnAddReminder, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 7, 188, 40));
 
         btnShowAllReminders.setBackground(new java.awt.Color(104, 0, 0));
         btnShowAllReminders.setText("Show All Reminders");
@@ -88,115 +114,64 @@ public class Home extends javax.swing.JFrame {
                 btnShowAllRemindersActionPerformed(evt);
             }
         });
+        pnlControlPanel.add(btnShowAllReminders, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 53, 188, 40));
 
         btnEditReminder.setBackground(new java.awt.Color(104, 0, 0));
         btnEditReminder.setText("Edit Reminder");
+        pnlControlPanel.add(btnEditReminder, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 99, 188, 40));
 
         btnDeleteReminder.setBackground(new java.awt.Color(104, 0, 0));
         btnDeleteReminder.setText("Delete Reminder");
+        pnlControlPanel.add(btnDeleteReminder, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 145, 188, 40));
 
-        javax.swing.GroupLayout pnlControlPanelLayout = new javax.swing.GroupLayout(pnlControlPanel);
-        pnlControlPanel.setLayout(pnlControlPanelLayout);
-        pnlControlPanelLayout.setHorizontalGroup(
-            pnlControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlControlPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnDeleteReminder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEditReminder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnShowAllReminders, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                    .addComponent(btnAddReminder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        pnlControlPanelLayout.setVerticalGroup(
-            pnlControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlControlPanelLayout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addComponent(btnAddReminder, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnShowAllReminders, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEditReminder, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDeleteReminder, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        pnlHome.add(pnlControlPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, 620));
 
         pnlCentral.setBackground(new java.awt.Color(237, 189, 178));
+        pnlCentral.setLocation(new java.awt.Point(0, 0));
+        pnlCentral.setMinimumSize(new java.awt.Dimension(22, 22));
+        pnlCentral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         imgDingLogo500.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         imgDingLogo500.setIcon(new javax.swing.ImageIcon(getClass().getResource("/co/edu/konradlorenz/view/img/ding-logo-semitransparent 500x500.png"))); // NOI18N
         imgDingLogo500.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pnlCentral.add(imgDingLogo500, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 620));
 
-        javax.swing.GroupLayout pnlCentralLayout = new javax.swing.GroupLayout(pnlCentral);
-        pnlCentral.setLayout(pnlCentralLayout);
-        pnlCentralLayout.setHorizontalGroup(
-            pnlCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(imgDingLogo500, javax.swing.GroupLayout.DEFAULT_SIZE, 1060, Short.MAX_VALUE)
-        );
-        pnlCentralLayout.setVerticalGroup(
-            pnlCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(imgDingLogo500, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
-        );
+        spnRemindersScrollPane.setBorder(null);
+        spnRemindersScrollPane.setAlignmentX(0.0F);
+        spnRemindersScrollPane.setAlignmentY(0.0F);
+        spnRemindersScrollPane.setMinimumSize(new java.awt.Dimension(22, 22));
+        spnRemindersScrollPane.setPreferredSize(new java.awt.Dimension(1048, 620));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/co/edu/konradlorenz/view/img/G_Translate_Icon_50x50.png"))); // NOI18N
-        jButton1.setPreferredSize(new java.awt.Dimension(70, 70));
-        jButton1.setRolloverEnabled(false);
-        jButton1.setSize(new java.awt.Dimension(70, 70));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
+        lstRemindersList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
         });
+        spnRemindersScrollPane.setViewportView(lstRemindersList);
 
-        javax.swing.GroupLayout pnlHomeLayout = new javax.swing.GroupLayout(pnlHome);
-        pnlHome.setLayout(pnlHomeLayout);
-        pnlHomeLayout.setHorizontalGroup(
-            pnlHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlHomeLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(pnlHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlHomeLayout.createSequentialGroup()
-                        .addComponent(pnlDingLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10))
-                    .addGroup(pnlHomeLayout.createSequentialGroup()
-                        .addComponent(pnlControlPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(pnlCentral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        pnlHomeLayout.setVerticalGroup(
-            pnlHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlHomeLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(pnlHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnlDingLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(10, 10, 10)
-                .addGroup(pnlHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnlControlPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
-                    .addComponent(pnlCentral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        pnlCentral.add(spnRemindersScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1030, 600));
+
+        pnlHome.add(pnlCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnlHome, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnTranslateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTranslateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnTranslateActionPerformed
 
     private void btnShowAllRemindersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowAllRemindersActionPerformed
         // TODO add your handling code here:
@@ -216,12 +191,14 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton btnDeleteReminder;
     private javax.swing.JButton btnEditReminder;
     private javax.swing.JButton btnShowAllReminders;
+    private javax.swing.JButton btnTranslate;
     private javax.swing.JLabel imgDingLogo500;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblDingLogo;
+    private javax.swing.JList<String> lstRemindersList;
     private javax.swing.JPanel pnlCentral;
     private javax.swing.JPanel pnlControlPanel;
     private javax.swing.JPanel pnlDingLogo;
     private javax.swing.JPanel pnlHome;
+    private javax.swing.JScrollPane spnRemindersScrollPane;
     // End of variables declaration//GEN-END:variables
 }
