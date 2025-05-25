@@ -34,12 +34,11 @@ public class PremiumReminder extends Reminder implements TypeAccount {
 
     @Override
     public String toString() {
-        return "RecordatorioPremium [pago=" + pago + ", calificaciones=" + calificaciones + ", titulo=" + titulo
-                + ", descripcion=" + descripcion + ", fecha=" + fecha + ", ubicacion=" + ubicacion + ", prioridad="
-                + prioridad + ", getTitulo()=" + getTitulo() + ", getDescripcion()=" + getDescripcion()
-                + ", getFecha()=" + getFecha() + ", getPago()=" + getPago() + ", getPrioridad()=" + getPrioridad()
-                + ", getUbicacion()=" + getUbicacion() + ", toString()=" + super.toString() + "]";
+        return "PremiumReminder: "+ super.toString()  + " |  Pago: " + pago + " |  Calificaciones: " + calificaciones + '}';
     }
+
+    
+
 
     public String descripcion() {
         return "Plan premium incluye promedio de calificaciones en tiempo real y mucho mas";

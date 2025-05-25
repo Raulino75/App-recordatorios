@@ -63,7 +63,7 @@ public class EditReminder extends javax.swing.JDialog {
         }
         
         // Change button text from "Add" to "Save" 
-        btnAdd.setText("Save");
+        btnEdit.setText("Save");
     }
     
     public boolean isSaved() {
@@ -96,11 +96,11 @@ public class EditReminder extends javax.swing.JDialog {
     }
 
     public JButton getBtnAdd() {
-        return btnAdd;
+        return btnEdit;
     }
 
     public void setBtnAdd(JButton btnAdd) {
-        this.btnAdd = btnAdd;
+        this.btnEdit = btnAdd;
     }
 
     public JButton getBtnCancel() {
@@ -188,7 +188,7 @@ public class EditReminder extends javax.swing.JDialog {
         spnDescription = new javax.swing.JScrollPane();
         txtaDescription = new javax.swing.JTextArea();
         btnCancel = new javax.swing.JButton();
-        btnAdd = new javax.swing.JButton();
+        btnEdit = new javax.swing.JButton();
         lblGrade = new javax.swing.JLabel();
         txtGrade = new javax.swing.JTextField();
         imgTacoBell = new javax.swing.JLabel();
@@ -250,6 +250,7 @@ public class EditReminder extends javax.swing.JDialog {
         pnlNewReminder.add(lblDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 470, 190, 60));
 
         cmbPlan.setBackground(new java.awt.Color(104, 0, 0));
+        cmbPlan.setForeground(new java.awt.Color(255, 255, 255));
         cmbPlan.setMaximumRowCount(2);
         cmbPlan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BASIC", "PREMIUM" }));
         cmbPlan.setToolTipText("");
@@ -263,6 +264,7 @@ public class EditReminder extends javax.swing.JDialog {
 
         txtTitle.setBackground(new java.awt.Color(104, 0, 0));
         txtTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        txtTitle.setForeground(new java.awt.Color(255, 255, 255));
         txtTitle.setBorder(null);
         txtTitle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -271,15 +273,19 @@ public class EditReminder extends javax.swing.JDialog {
         });
         pnlNewReminder.add(txtTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 280, 30));
 
+        calDateCalendar.setBackground(new java.awt.Color(242, 176, 227));
+        calDateCalendar.setBorder(new javax.swing.border.MatteBorder(null));
         calDateCalendar.setAlignmentX(0.0F);
         calDateCalendar.setAlignmentY(0.0F);
         calDateCalendar.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        calDateCalendar.setDecorationBackgroundColor(new java.awt.Color(210, 175, 225));
         calDateCalendar.setDecorationBackgroundVisible(false);
         calDateCalendar.setName("calDateCalendar"); // NOI18N
         calDateCalendar.setWeekOfYearVisible(false);
         pnlNewReminder.add(calDateCalendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 430, 200));
 
         cmbPriority.setBackground(new java.awt.Color(104, 0, 0));
+        cmbPriority.setForeground(new java.awt.Color(255, 255, 255));
         cmbPriority.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NO_PRIORITY", "LOW", "MEDIUM", "HIGH" }));
         cmbPriority.setBorder(null);
         cmbPriority.addActionListener(new java.awt.event.ActionListener() {
@@ -291,6 +297,7 @@ public class EditReminder extends javax.swing.JDialog {
 
         txtLocation.setBackground(new java.awt.Color(104, 0, 0));
         txtLocation.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        txtLocation.setForeground(new java.awt.Color(255, 255, 255));
         txtLocation.setBorder(null);
         txtLocation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -301,6 +308,7 @@ public class EditReminder extends javax.swing.JDialog {
 
         txtaDescription.setBackground(new java.awt.Color(104, 0, 0));
         txtaDescription.setColumns(10);
+        txtaDescription.setForeground(new java.awt.Color(255, 255, 255));
         txtaDescription.setRows(3);
         txtaDescription.setTabSize(2);
         txtaDescription.setAlignmentX(0.0F);
@@ -320,14 +328,15 @@ public class EditReminder extends javax.swing.JDialog {
         });
         pnlNewReminder.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 720, 130, 30));
 
-        btnAdd.setBackground(new java.awt.Color(0, 204, 51));
-        btnAdd.setText("ADD");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+        btnEdit.setBackground(new java.awt.Color(0, 204, 51));
+        btnEdit.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnEdit.setText("EDIT");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
+                btnEditActionPerformed(evt);
             }
         });
-        pnlNewReminder.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 720, 120, 30));
+        pnlNewReminder.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 720, 120, 30));
 
         lblGrade.setBackground(new java.awt.Color(104, 0, 0));
         lblGrade.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
@@ -338,6 +347,7 @@ public class EditReminder extends javax.swing.JDialog {
 
         txtGrade.setBackground(new java.awt.Color(104, 0, 0));
         txtGrade.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        txtGrade.setForeground(new java.awt.Color(255, 255, 255));
         txtGrade.setBorder(null);
         txtGrade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -379,7 +389,7 @@ public class EditReminder extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         try {
             // Validate title
             String title = txtTitle.getText();
@@ -402,7 +412,7 @@ public class EditReminder extends javax.swing.JDialog {
         } catch (DuplicateReminderException e) {
             View.mostrarMensaje(this, "Ya existe un recordatorio con ese título: " + e.getTitle(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_btnAddActionPerformed
+    }//GEN-LAST:event_btnEditActionPerformed
 
     private void txtGradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGradeActionPerformed
         txtGrade.setVisible(reminderToEdit instanceof PremiumReminder); 
@@ -413,8 +423,8 @@ public class EditReminder extends javax.swing.JDialog {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnEdit;
     private com.toedter.calendar.JCalendar calDateCalendar;
     private javax.swing.JComboBox<String> cmbPlan;
     private javax.swing.JComboBox<String> cmbPriority;

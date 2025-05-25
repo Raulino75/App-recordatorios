@@ -182,6 +182,7 @@ public class NewReminder extends javax.swing.JDialog {
         pnlNewReminder.add(lblDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 470, 190, 60));
 
         cmbPlan.setBackground(new java.awt.Color(104, 0, 0));
+        cmbPlan.setForeground(new java.awt.Color(255, 255, 255));
         cmbPlan.setMaximumRowCount(2);
         cmbPlan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BASIC", "PREMIUM" }));
         cmbPlan.setToolTipText("");
@@ -195,6 +196,7 @@ public class NewReminder extends javax.swing.JDialog {
 
         txtTitle.setBackground(new java.awt.Color(104, 0, 0));
         txtTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        txtTitle.setForeground(new java.awt.Color(255, 255, 255));
         txtTitle.setBorder(null);
         txtTitle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -212,6 +214,7 @@ public class NewReminder extends javax.swing.JDialog {
         pnlNewReminder.add(calDateCalendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 430, 200));
 
         cmbPriority.setBackground(new java.awt.Color(104, 0, 0));
+        cmbPriority.setForeground(new java.awt.Color(255, 255, 255));
         cmbPriority.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NO_PRIORITY", "LOW", "MEDIUM", "HIGH" }));
         cmbPriority.setBorder(null);
         cmbPriority.addActionListener(new java.awt.event.ActionListener() {
@@ -223,6 +226,7 @@ public class NewReminder extends javax.swing.JDialog {
 
         txtLocation.setBackground(new java.awt.Color(104, 0, 0));
         txtLocation.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        txtLocation.setForeground(new java.awt.Color(255, 255, 255));
         txtLocation.setBorder(null);
         txtLocation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -233,6 +237,7 @@ public class NewReminder extends javax.swing.JDialog {
 
         txtaDescription.setBackground(new java.awt.Color(104, 0, 0));
         txtaDescription.setColumns(10);
+        txtaDescription.setForeground(new java.awt.Color(255, 255, 255));
         txtaDescription.setRows(3);
         txtaDescription.setTabSize(2);
         txtaDescription.setAlignmentX(0.0F);
@@ -270,6 +275,7 @@ public class NewReminder extends javax.swing.JDialog {
 
         txtGrade.setBackground(new java.awt.Color(104, 0, 0));
         txtGrade.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        txtGrade.setForeground(new java.awt.Color(255, 255, 255));
         txtGrade.setBorder(null);
         txtGrade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -305,9 +311,10 @@ public class NewReminder extends javax.swing.JDialog {
     private void cmbPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPlanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbPlanActionPerformed
-
+    
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        // TODO add your handling code here:
+
+        this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed

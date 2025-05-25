@@ -167,39 +167,31 @@ public class Controller {
 //}
 //
 //
-//    public void deleteReminder() throws EmptyInputException {
-//    if (remindersList.isEmpty()) {
-//        home.showMessage("There are no reminders to delete.");
-//        return;
-//    }
-//
-//    boolean found = false;
-//    Recordatory reminderToDelete = null;
-//
-//    while (!found) {
-//        String title = home.askInput("Enter the title of the reminder to delete:");
-//        if (title == null || title.trim().isEmpty()) {
-//            home.showMessage("Title cannot be empty. Please try again.");
-//            continue;
-//        }
-//
-//        for (Recordatory r : remindersList) {
-//            if (r.getTitulo().equals(title)) {
-//                found = true;
-//                reminderToDelete = r;
-//                break;
-//            }
-//        }
-//
-//        if (!found) {
-//            home.showMessage("Reminder with title '" + title + "' not found. Please try again.");
-//        }
-//    }
-//
-//    remindersList.remove(reminderToDelete);
-//    home.showMessage("Reminder successfully removed.");
-//}
-//
+    public void deleteReminder(String title) {
+        if (remindersList.isEmpty()) {
+            View.mostrarMensaje(home, "No hay recordatorios para eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        Reminder reminderToDelete = null;
+        
+        // Buscar el recordatorio por título
+        for (Reminder r : remindersList) {
+            if (r.getTitulo().equals(title)) {
+                reminderToDelete = r;
+                break;
+            }
+        }
+
+        if (reminderToDelete == null) {
+            View.mostrarMensaje(home, "No se encontró el recordatorio con título: " + title, "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Eliminar el recordatorio y mostrar mensaje de éxito
+        remindersList.remove(reminderToDelete);
+        View.mostrarMensaje(home, "Recordatorio eliminado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+    }
 //
 //    public void closeProgram() {
 //    home.showMessage("Program closed.");
@@ -216,5 +208,10 @@ public class Controller {
         remindersList.add(new BasicReminder("Recordatorio 3", "Descripción 3", "03/03/2023", Priority.HIGH, "Ubicación 3"));
         remindersList.add(new BasicReminder("Recordatorio 4", "Descripción 4", "04/04/2023", Priority.LOW, "Ubicación 4"));
         remindersList.add(new PremiumReminder("Recordatorio 5", "Descripción 5", "05/05/2023", Priority.MEDIUM, "Ubicación 5",50));
+    }
+
+    public Reminder selectReminder(int index) {
+       
+        return  remindersList.get(index);
     }
 }

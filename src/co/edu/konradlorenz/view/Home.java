@@ -1,10 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package co.edu.konradlorenz.view;
 
 import co.edu.konradlorenz.controller.Controller;
+import co.edu.konradlorenz.view.EditReminder;
+import co.edu.konradlorenz.view.NewReminder;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -14,7 +12,7 @@ import javax.swing.JOptionPane;
  * @author dulce
  */
 public class Home extends javax.swing.JFrame {
-
+    
     Controller control;
     NewReminder newReminder;
     EditReminder editReminder;
@@ -23,67 +21,67 @@ public class Home extends javax.swing.JFrame {
         this.control = control;
         initComponents();
     }
-
+    
     public JButton getBtnAddReminder() {
         return btnAddReminder;
     }
-
+    
     public void setBtnAddReminder(JButton btnAddReminder) {
         this.btnAddReminder = btnAddReminder;
     }
-
+    
     public JButton getBtnDeleteReminder() {
         return btnDeleteReminder;
     }
-
+    
     public void setBtnDeleteReminder(JButton btnDeleteReminder) {
         this.btnDeleteReminder = btnDeleteReminder;
     }
-
+    
     public JButton getBtnEditReminder() {
         return btnEditReminder;
     }
-
+    
     public void setBtnEditReminder(JButton btnEditReminder) {
         this.btnEditReminder = btnEditReminder;
     }
-
+    
     public JButton getBtnShowAllReminders() {
         return btnShowAllReminders;
     }
-
+    
     public void setBtnShowAllReminders(JButton btnShowAllReminders) {
         this.btnShowAllReminders = btnShowAllReminders;
     }
-
+    
     public JButton getBtnTranslate() {
         return btnTranslate;
     }
-
+    
     public void setBtnTranslate(JButton btnTranslate) {
         this.btnTranslate = btnTranslate;
     }
-
+    
     public JList<String> getLstRemindersList() {
         return lstRemindersList;
     }
-
+    
     public void setLstRemindersList(JList<String> lstRemindersList) {
         this.lstRemindersList = lstRemindersList;
     }
-
+    
     public NewReminder getNewReminder() {
         return newReminder;
     }
-
+    
     public void setNewReminder(NewReminder newReminder) {
         this.newReminder = newReminder;
     }
-
+    
     public EditReminder getEditReminder() {
         return editReminder;
     }
-
+    
     public void setEditReminder(EditReminder editReminder) {
         this.editReminder = editReminder;
     }
@@ -141,8 +139,9 @@ public class Home extends javax.swing.JFrame {
         lblDingLogo.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         lblDingLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDingLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/co/edu/konradlorenz/view/img/ding-logo 50x50.png"))); // NOI18N
-        lblDingLogo.setText("Ding");
+        lblDingLogo.setText("Ding!!!");
         lblDingLogo.setToolTipText("");
+        lblDingLogo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout pnlDingLogoLayout = new javax.swing.GroupLayout(pnlDingLogo);
         pnlDingLogo.setLayout(pnlDingLogoLayout);
@@ -162,6 +161,7 @@ public class Home extends javax.swing.JFrame {
         pnlControlPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnAddReminder.setBackground(new java.awt.Color(104, 0, 0));
+        btnAddReminder.setForeground(new java.awt.Color(255, 255, 255));
         btnAddReminder.setText("Add Reminder");
         btnAddReminder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,6 +171,7 @@ public class Home extends javax.swing.JFrame {
         pnlControlPanel.add(btnAddReminder, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 7, 188, 40));
 
         btnShowAllReminders.setBackground(new java.awt.Color(104, 0, 0));
+        btnShowAllReminders.setForeground(new java.awt.Color(255, 255, 255));
         btnShowAllReminders.setText("Show All Reminders");
         btnShowAllReminders.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,6 +181,7 @@ public class Home extends javax.swing.JFrame {
         pnlControlPanel.add(btnShowAllReminders, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 53, 188, 40));
 
         btnEditReminder.setBackground(new java.awt.Color(104, 0, 0));
+        btnEditReminder.setForeground(new java.awt.Color(255, 255, 255));
         btnEditReminder.setText("Edit Reminder");
         btnEditReminder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,7 +191,13 @@ public class Home extends javax.swing.JFrame {
         pnlControlPanel.add(btnEditReminder, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 99, 188, 40));
 
         btnDeleteReminder.setBackground(new java.awt.Color(104, 0, 0));
+        btnDeleteReminder.setForeground(new java.awt.Color(255, 255, 255));
         btnDeleteReminder.setText("Delete Reminder");
+        btnDeleteReminder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteReminderActionPerformed(evt);
+            }
+        });
         pnlControlPanel.add(btnDeleteReminder, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 145, 188, 40));
 
         pnlHome.add(pnlControlPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, 620));
@@ -241,41 +249,67 @@ public class Home extends javax.swing.JFrame {
     private void btnShowAllRemindersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowAllRemindersActionPerformed
         // Actualiza el modelo de la lista con los recordatorios
         lstRemindersList.setModel(control.viewReminders());
-        
+
         // Hace visible el scroll pane y la lista
         spnRemindersScrollPane.setVisible(true);
-        lstRemindersList.setVisible(true);       
+        lstRemindersList.setVisible(true);
     }//GEN-LAST:event_btnShowAllRemindersActionPerformed
-
-    private void btnAddReminderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddReminderActionPerformed
+    
+    private void btnAddReminderActionPerformed(java.awt.event.ActionEvent evt) {
         newReminder = new NewReminder(this, true, control); // this= Home (le dice a quien pertenece esta ventana), true= modular (desactiva Home mientras esté abierto), control= instancia del control unica
         newReminder.setLocationRelativeTo(null); // lo centra en la pantalla
         newReminder.setVisible(true); // lo hace visible
-    }//GEN-LAST:event_btnAddReminderActionPerformed
-
-    private void btnEditReminderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditReminderActionPerformed
+    }
+    
+    private void btnEditReminderActionPerformed(java.awt.event.ActionEvent evt) {
         // Get selected reminder from list
-        String selectedReminderText = lstRemindersList.getSelectedValue();
+        int index = lstRemindersList.getSelectedIndex();
+        String titulo = control.selectReminder(index).getTitulo();        
         
-        if (selectedReminderText == null) {
+        if (titulo == null) {
             View.mostrarMensaje(this, "Por favor seleccione un recordatorio para editar.", "Error", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
-        // Get title from the selected reminder text
-        String title = selectedReminderText.split(" - ")[0]; // Assuming format is "Title - Description"
-        
+
         // Call the controller's modifyReminder method with the selected title
-        control.modifyReminder(title);
-        
+        control.modifyReminder(titulo);
+
         // Update the list after editing
         updateRemindersList();
-    }//GEN-LAST:event_btnEditReminderActionPerformed
+    }
+    
+    private void btnDeleteReminderActionPerformed(java.awt.event.ActionEvent evt) {
+        // Get selected reminder from list
+        int index = lstRemindersList.getSelectedIndex();
+        if (index == -1) {
+            View.mostrarMensaje(this, "Por favor seleccione un recordatorio para eliminar.", "Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 
+        String titulo = control.selectReminder(index).getTitulo();        
+        
+        // Confirmar con el usuario
+        int confirmResult = JOptionPane.showConfirmDialog(
+            this,
+            "¿Está seguro que desea eliminar el recordatorio '" + titulo + "'?",
+            "Confirmar eliminación",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE
+        );
+        
+        if (confirmResult == JOptionPane.YES_OPTION) {
+            // Call the controller's deleteReminder method with the selected title
+            control.deleteReminder(titulo);
+
+            // Update the list after deletion
+            updateRemindersList();
+        }
+    }
+    
     public void updateRemindersList() {
         // Actualiza el modelo de la lista con los recordatorios
         lstRemindersList.setModel(control.viewReminders());
-        
+
         // Hace visible el scroll pane y la lista
         spnRemindersScrollPane.setVisible(true);
         lstRemindersList.setVisible(true);
@@ -284,7 +318,7 @@ public class Home extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddReminder;

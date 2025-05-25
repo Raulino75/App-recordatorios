@@ -60,7 +60,8 @@ public abstract class Reminder {
 
     @Override
     public String toString() {
-        return "Recordatorio{" + "titulo = " + titulo + ", descripcion = " + descripcion + ", fecha = " + fecha + ", prioridad = " + prioridad + ", ubicacion = " + ubicacion + '}';
+        return  " |  Titulo : " + titulo + " |  Descripcion: " + descripcion + " |  Fecha: " + fecha +  " |  Prioridad: " + prioridad 
+                + " |  Ubicacion: " + ubicacion + '}';
     }
 
 }

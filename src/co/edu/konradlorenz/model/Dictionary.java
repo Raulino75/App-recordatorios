@@ -19,28 +19,12 @@ public class Dictionary {
         public static void addUsersEnglish(String es, String data) {
         texts_en.put("error_dialog", "Unexpected error: ");
         texts_en.put("dialog_general_error", "Error: ");
-        texts_en.put("error_dialog", "Unexpected error: ");
-        texts_en.put("dialog_general_error", "Error: ");
-        texts_en.put("error_dialog", "Unexpected error: ");
-        texts_en.put("dialog_general_error", "Error: ");
-        texts_en.put("error_dialog", "Unexpected error: ");
-        texts_en.put("dialog_general_error", "Error: ");
-        texts_en.put("error_dialog", "Unexpected error: ");
-        texts_en.put("dialog_general_error", "Error: ");
-        texts_en.put("error_dialog", "Unexpected error: ");
-        texts_en.put("dialog_general_error", "Error: ");
-        texts_en.put("error_dialog", "Unexpected error: ");
-        texts_en.put("dialog_general_error", "Error: ");
-        texts_en.put("error_dialog", "Unexpected error: ");
-        texts_en.put("dialog_general_error", "Error: ");
-        texts_en.put("error_dialog", "Unexpected error: ");
-        texts_en.put("dialog_general_error", "Error: ");
-        texts_en.put("error_dialog", "Unexpected error: ");
-        texts_en.put("dialog_general_error", "Error: ");
+        //in progress
     }
 
     public static void addUsersEspanish(String es, String data) {
         texts_es.put("error_dialog", "Error inesperado: ");
         texts_es.put("dialog_general_error", "Error: ");
+        //en proceso
     }
 }

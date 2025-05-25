@@ -33,13 +33,13 @@ public class BasicReminder extends Reminder implements TypeAccount {
             this.pago = pago;
         }
 
-        @Override
-        public String toString() {
-            return "RecordatorioBasico [titulo=" + titulo + ", descripcion=" + descripcion + ", fecha=" + fecha
-                    + ", ubicacion=" + ubicacion + ", prioridad=" + prioridad + ", pago=" + pago + ", getTitulo()="
-                    + getTitulo() + ", getDescripcion()=" + getDescripcion() + ", getFecha()=" + getFecha()
-                    + ", getPago()=" + getPago() + ", getPrioridad()=" + getPrioridad() + ", getUbicacion()="
-                    + getUbicacion() + ", toString()=" + super.toString() + "]";
-        }
+    @Override
+    public String toString() {
+        return "BasicReminder: "+ super.toString()  + " |  Pago: " + pago + '}';
+    }
+
+    
+
+        
         
 }
