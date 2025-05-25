@@ -15,6 +15,8 @@ import javax.swing.JList;
 public class Home extends javax.swing.JFrame {
 
     Controller control;
+    NewReminder newReminder;
+    EditReminder editReminder;
     
     public Home(Controller control) {
         initComponents();
@@ -69,7 +71,21 @@ public class Home extends javax.swing.JFrame {
         this.lstRemindersList = lstRemindersList;
     }
 
-    
+    public NewReminder getNewReminder() {
+        return newReminder;
+    }
+
+    public void setNewReminder(NewReminder newReminder) {
+        this.newReminder = newReminder;
+    }
+
+    public EditReminder getEditReminder() {
+        return editReminder;
+    }
+
+    public void setEditReminder(EditReminder editReminder) {
+        this.editReminder = editReminder;
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -225,9 +241,9 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_btnShowAllRemindersActionPerformed
 
     private void btnAddReminderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddReminderActionPerformed
-        // TODO add your handling code here:        
-        //control.addReminder();
-        NewReminder newReminder = new NewReminder(this, true, control);
+        newReminder = new NewReminder(this, true, control); // this= Home (le dice a quien pertenece esta ventana), true= modular (desactiva Home mientras esté abierto), control= instancia del control unica
+        newReminder.setLocationRelativeTo(null); // lo centra en la pantalla
+        newReminder.setVisible(true); // lo hace visible
     }//GEN-LAST:event_btnAddReminderActionPerformed
 
     private void btnEditReminderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditReminderActionPerformed
