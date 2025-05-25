@@ -234,7 +234,10 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTranslateActionPerformed
 
     private void btnShowAllRemindersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowAllRemindersActionPerformed
-        // TODO add your handling code here:
+        spnRemindersScrollPane.setVisible(true);
+        lstRemindersList.setVisible(true);
+        control.viewReminders();
+        
     }//GEN-LAST:event_btnShowAllRemindersActionPerformed
 
     private void btnAddReminderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddReminderActionPerformed

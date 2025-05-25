@@ -6,6 +6,7 @@ import java.util.*;
 import java.time.*;
 import java.time.format.*;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
 
 public class Controller {
 
@@ -15,6 +16,7 @@ public class Controller {
     private Home home;
 
     public void run() {
+        datosDePrueba();
         this.home = new Home(this);
         home.setLocationRelativeTo(null);
         home.setVisible(true);
@@ -78,22 +80,18 @@ public class Controller {
     }
 
     public DefaultListModel<String> viewReminders() {
+        DefaultListModel<String> listModel = new DefaultListModel<>();
 
         if (remindersList.isEmpty()) {
             System.out.println("No reminders are available.");
             // TODO: Add JPane de advertencia
         }
 
-        home.setLstRemindersList(null); // borra la lista
-
-        DefaultListModel<String> model = new DefaultListModel<>();
-
         for (Reminder r : remindersList) {
-            model.addElement(r.toString());
+            listModel.addElement(r.toString());
         }
 
-        return model;
-
+        return listModel;
     }
 //
 //
@@ -197,4 +195,12 @@ public class Controller {
 //    private int obtainGrade() {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 //    }
+
+    private void datosDePrueba() {
+        remindersList.add(new BasicReminder("Recordatorio 1", "Descripción 1", "01/01/2023", Priority.LOW, "Ubicación 1"));
+        remindersList.add(new BasicReminder("Recordatorio 2", "Descripción 2", "02/02/2023", Priority.MEDIUM, "Ubicación 2"));
+        remindersList.add(new BasicReminder("Recordatorio 3", "Descripción 3", "03/03/2023", Priority.HIGH, "Ubicación 3"));
+        remindersList.add(new BasicReminder("Recordatorio 4", "Descripción 4", "04/04/2023", Priority.LOW, "Ubicación 4"));
+        remindersList.add(new PremiumReminder("Recordatorio 5", "Descripción 5", "05/05/2023", Priority.MEDIUM, "Ubicación 5",99999999,50));
+    }
 }
