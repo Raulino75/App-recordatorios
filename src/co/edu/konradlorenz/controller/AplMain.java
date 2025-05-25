@@ -7,8 +7,7 @@ public class AplMain {
 
         new Controller().run();
 
-        Controller control = new Controller();
-        control.run();
+        
        
          
 
