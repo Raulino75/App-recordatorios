@@ -13,9 +13,7 @@ import co.edu.konradlorenz.controller.Controller;
 public class Home extends javax.swing.JFrame {
 
     Controller control;
-    /**
-     * Creates new form Home
-     */
+    
     public Home(Controller control) {
         initComponents();
         this.control = control;
@@ -51,11 +49,9 @@ public class Home extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setName("Ding App"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
 
         pnlHome.setBackground(new java.awt.Color(104, 0, 0));
-        pnlHome.setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         pnlHome.setMaximumSize(new java.awt.Dimension(1280, 720));
         pnlHome.setMinimumSize(new java.awt.Dimension(1280, 720));
         pnlHome.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -118,6 +114,11 @@ public class Home extends javax.swing.JFrame {
 
         btnEditReminder.setBackground(new java.awt.Color(104, 0, 0));
         btnEditReminder.setText("Edit Reminder");
+        btnEditReminder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditReminderActionPerformed(evt);
+            }
+        });
         pnlControlPanel.add(btnEditReminder, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 99, 188, 40));
 
         btnDeleteReminder.setBackground(new java.awt.Color(104, 0, 0));
@@ -127,7 +128,6 @@ public class Home extends javax.swing.JFrame {
         pnlHome.add(pnlControlPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, 620));
 
         pnlCentral.setBackground(new java.awt.Color(237, 189, 178));
-        pnlCentral.setLocation(new java.awt.Point(0, 0));
         pnlCentral.setMinimumSize(new java.awt.Dimension(22, 22));
         pnlCentral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -178,8 +178,14 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_btnShowAllRemindersActionPerformed
 
     private void btnAddReminderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddReminderActionPerformed
-        //        control.addReminder();
+        // TODO add your handling code here:        
+        //control.addReminder();
+        NewReminder newReminder = new NewReminder(this, true, control);
     }//GEN-LAST:event_btnAddReminderActionPerformed
+
+    private void btnEditReminderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditReminderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditReminderActionPerformed
 
     /**
      * @param args the command line arguments
