@@ -5,9 +5,20 @@
 package co.edu.konradlorenz.view;
 
 import co.edu.konradlorenz.controller.Controller;
+import co.edu.konradlorenz.model.BasicReminder;
+import co.edu.konradlorenz.model.DuplicateReminderException;
+import co.edu.konradlorenz.model.EmptyInputException;
+import co.edu.konradlorenz.model.PremiumReminder;
+import co.edu.konradlorenz.model.Priority;
+import co.edu.konradlorenz.model.Reminder;
 import com.toedter.calendar.JCalendar;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -18,12 +29,70 @@ import javax.swing.JTextField;
 public class EditReminder extends javax.swing.JDialog {
 
     Controller control;
+    private Reminder reminderToEdit;
+    private boolean saved = false;
     
-    public EditReminder(java.awt.Frame parent, boolean modal, Controller control) {
-        super(parent, modal);
-        this.control = control;
+    public EditReminder(java.awt.Frame parent, Reminder reminder) {
+        super(parent, "Edit reminder", true);
+        this.reminderToEdit = reminder;
+        this.control = ((Home)parent).getControl();
         initComponents();
         
+        // Load reminder values into components
+        txtTitle.setText(reminder.getTitulo());
+        txtaDescription.setText(reminder.getDescripcion());
+        txtLocation.setText(reminder.getUbicacion());
+        cmbPriority.setSelectedItem(reminder.getPrioridad().toString());
+        
+        // Configure date
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate date = LocalDate.parse(reminder.getFecha(), formatter);
+        Date dateInJCalendar = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        calDateCalendar.setDate(dateInJCalendar);
+        
+        // If it's a premium reminder, show and configure the grade field
+        if (reminder instanceof PremiumReminder) {
+            lblGrade.setVisible(true);
+            txtGrade.setVisible(true);
+            txtGrade.setText(String.valueOf(((PremiumReminder) reminder).getCalificaciones()));
+            cmbPlan.setSelectedItem("PREMIUM");
+        } else {
+            lblGrade.setVisible(false);
+            txtGrade.setVisible(false);
+            cmbPlan.setSelectedItem("BASIC");
+        }
+        
+        // Change button text from "Add" to "Save" 
+        btnAdd.setText("Save");
+    }
+    
+    public boolean isSaved() {
+        return saved;
+    }
+    
+    public Reminder getEditedReminder() {
+        Reminder edited;
+        
+        if (cmbPlan.getSelectedItem().equals("PREMIUM")) {
+            edited = new PremiumReminder();
+            ((PremiumReminder) edited).setCalificaciones(Integer.parseInt(txtGrade.getText()));
+        } else {
+            edited = new BasicReminder();
+        }
+        
+        edited.setTitulo(txtTitle.getText());
+        edited.setDescripcion(txtaDescription.getText());
+        edited.setUbicacion(txtLocation.getText());
+        edited.setPrioridad(Priority.valueOf(cmbPriority.getSelectedItem().toString()));
+        
+        // Formatear la fecha
+        Date selectedDate = calDateCalendar.getDate();
+        LocalDate date = selectedDate.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+        edited.setFecha(date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        
+        return edited;
     }
 
     public JButton getBtnAdd() {
@@ -306,15 +375,37 @@ public class EditReminder extends javax.swing.JDialog {
     }//GEN-LAST:event_cmbPlanActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        // TODO add your handling code here:
+        saved = false;
+        this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        control.addReminder();
+        try {
+            // Validate title
+            String title = txtTitle.getText();
+            if (title == null || title.trim().isEmpty()) {
+                throw new EmptyInputException("El título no puede estar vacío.");
+            }
+
+            // Check for duplicate title (except for the current reminder)
+            for (Reminder r : Controller.remindersList) {
+                if (r != reminderToEdit && r.getTitulo().equals(title)) {
+                    throw new DuplicateReminderException(title);
+                }
+            }
+            
+            // Mark as saved and close dialog
+            saved = true;
+            this.dispose();
+        } catch (EmptyInputException e) {
+            View.mostrarMensaje(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (DuplicateReminderException e) {
+            View.mostrarMensaje(this, "Ya existe un recordatorio con ese título: " + e.getTitle(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void txtGradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGradeActionPerformed
-        // TODO add your handling code here:
+        txtGrade.setVisible(reminderToEdit instanceof PremiumReminder); 
     }//GEN-LAST:event_txtGradeActionPerformed
 
     /**

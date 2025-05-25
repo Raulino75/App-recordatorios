@@ -83,12 +83,11 @@ public class Controller {
     }
 
     public DefaultListModel<String> viewReminders() {
-        DefaultListModel<String> listModel = new DefaultListModel<>();
-
+        DefaultListModel<String> listModel = new DefaultListModel<>();        
         if (remindersList.isEmpty()) {
 
             System.out.println("No reminders are available.");
-            View.mostrarMensaje(null, "No reminders are available.", "Error", JOptionPane.ERROR_MESSAGE);
+            View.mostrarMensaje(home, "No reminders are available.", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         for (Reminder r : remindersList) {
@@ -99,48 +98,59 @@ public class Controller {
     }
 //
 //
-//    public void modifyReminder() throws EmptyInputException, InvalidPriorityException,
-//        DuplicateReminderException, InvalidReminderDateException {
-//    if (remindersList.isEmpty()) {
-//        home.showMessage("There are no reminders to modify.");
-//        return;
-//    }
-//
-//    boolean found = false;
-//    Recordatory reminderToModify = null;
-//
-//    while (!found) {
-//        String title = home.askInput("Enter the title of the reminder to be modified:");
-//        if (title == null || title.trim().isEmpty()) {
-//            home.showMessage("Title cannot be empty. Please try again.");
-//            continue;
-//        }
-//
-//        for (Recordatory reminder : remindersList) {
-//            if (reminder.getTitulo().equals(title)) {
-//                found = true;
-//                reminderToModify = reminder;
-//                break;
-//            }
-//        }
-//
-//        if (!found) {
-//            home.showMessage("Reminder with title '" + title + "' not found. Please try again.");
-//        }
-//    }
-//
-//    home.showMessage("Enter the new reminder data:");
-//
-//    String newTitle = home.getTitle(); 
-//    if (newTitle == null || newTitle.trim().isEmpty()) {
-//        throw new EmptyInputException("Title cannot be empty.");
-//    }
-//   
-//    for (Recordatory r : remindersList) {
-//        if (r != reminderToModify && r.getTitulo().equals(newTitle)) {
-//            throw new DuplicateReminderException("The title is already in use");
-//        }
-//    }
+ public void modifyReminder(String title) {
+    if (remindersList.isEmpty()) {
+        View.mostrarMensaje(home, "No hay recordatorios para modificar.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    Reminder reminderToModify = null;
+    
+    // Buscar el recordatorio por título
+    for (Reminder r : remindersList) {
+        if (r.getTitulo().equals(title)) {
+            reminderToModify = r;
+            break;
+        }
+    }
+
+    if (reminderToModify == null) {
+        View.mostrarMensaje(home, "No se encontró el recordatorio con título: " + title, "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Crear y mostrar el diálogo de edición
+    EditReminder dialog = new EditReminder(home, reminderToModify);
+    dialog.setVisible(true);
+
+    if (dialog.isSaved()) {
+        try {
+            Reminder editedReminder = dialog.getEditedReminder();
+            
+            // Validar título único (excepto para el recordatorio actual)
+            for (Reminder r : remindersList) {
+                if (r != reminderToModify && r.getTitulo().equals(editedReminder.getTitulo())) {
+                    throw new DuplicateReminderException(editedReminder.getTitulo());
+                }
+            }
+            
+            // Validar campos vacíos
+            if (editedReminder.getTitulo() == null || editedReminder.getTitulo().trim().isEmpty()) {
+                throw new EmptyInputException("El título no puede estar vacío.");
+            }
+            
+            // Actualizar el recordatorio en la lista
+            int index = remindersList.indexOf(reminderToModify);
+            remindersList.set(index, editedReminder);
+            
+            View.mostrarMensaje(home, "Recordatorio modificado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } catch (DuplicateReminderException e) {
+            View.mostrarMensaje(home, "Ya existe un recordatorio con ese título: " + e.getTitle(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (EmptyInputException e) {
+            View.mostrarMensaje(home, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+}
 //
 //    String newDescription = home.getDescription();
 //    LocalDateTime newDate = home.getDate();  

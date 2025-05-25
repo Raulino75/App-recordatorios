@@ -7,6 +7,7 @@ package co.edu.konradlorenz.view;
 import co.edu.konradlorenz.controller.Controller;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -85,6 +86,10 @@ public class Home extends javax.swing.JFrame {
 
     public void setEditReminder(EditReminder editReminder) {
         this.editReminder = editReminder;
+    }
+    
+    public Controller getControl() {
+        return control;
     }
     
     @SuppressWarnings("unchecked")
@@ -249,9 +254,22 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddReminderActionPerformed
 
     private void btnEditReminderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditReminderActionPerformed
-//        editReminder = new EditReminder(this, true, control); // this= Home (le dice a quien pertenece esta ventana), true= modular (desactiva Home mientras esté abierto), control= instancia del control unica
-//        editReminder.setLocationRelativeTo(null); // lo centra en la pantalla
-//        editReminder.setVisible(true); // lo hace visible
+        // Get selected reminder from list
+        String selectedReminderText = lstRemindersList.getSelectedValue();
+        
+        if (selectedReminderText == null) {
+            View.mostrarMensaje(this, "Por favor seleccione un recordatorio para editar.", "Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        // Get title from the selected reminder text
+        String title = selectedReminderText.split(" - ")[0]; // Assuming format is "Title - Description"
+        
+        // Call the controller's modifyReminder method with the selected title
+        control.modifyReminder(title);
+        
+        // Update the list after editing
+        updateRemindersList();
     }//GEN-LAST:event_btnEditReminderActionPerformed
 
     public void updateRemindersList() {

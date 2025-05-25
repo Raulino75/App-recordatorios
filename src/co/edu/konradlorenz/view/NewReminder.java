@@ -322,7 +322,7 @@ public class NewReminder extends javax.swing.JDialog {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void txtGradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGradeActionPerformed
-        // TODO add your handling code here:
+//         txtGrade.setVisible(rem instanceof PremiumReminder);
     }//GEN-LAST:event_txtGradeActionPerformed
 
     /**
