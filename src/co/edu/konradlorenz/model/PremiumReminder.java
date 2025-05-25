@@ -2,24 +2,24 @@ package co.edu.konradlorenz.model;
 
 import co.edu.konradlorenz.view.*;
 
-public class RecordatorioPremium extends Recordatory implements TypeAccount {
+public class PremiumReminder extends Reminder implements TypeAccount {
 
     private int pago;
     private int calificaciones;
 
-    public RecordatorioPremium(String titulo, String descripcion, String fecha, Priority prioridad, String ubicacion,
+    public PremiumReminder(String titulo, String descripcion, String fecha, Priority prioridad, String ubicacion,
             int pago, int calificaciones) {
         super(titulo, descripcion, fecha, prioridad, ubicacion);
         this.pago = 25000;
         this.calificaciones = calificaciones;
     }
 
-    public RecordatorioPremium(int pago, int calificaciones) {
+    public PremiumReminder(int pago, int calificaciones) {
         this.pago = pago;
         this.calificaciones = calificaciones;
     }
 
-    public RecordatorioPremium() {
+    public PremiumReminder() {
     }
 
     public int getPago() {

@@ -90,6 +90,14 @@ public class NewReminder extends javax.swing.JDialog {
         this.txtaDescription = txtaDescription;
     }
 
+    public JTextField getTxtGrade() {
+        return txtGrade;
+    }
+
+    public void setTxtGrade(JTextField txtGrade) {
+        this.txtGrade = txtGrade;
+    }
+
     
     
     @SuppressWarnings("unchecked")
@@ -112,6 +120,8 @@ public class NewReminder extends javax.swing.JDialog {
         txtaDescription = new javax.swing.JTextArea();
         btnCancel = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
+        lblGrade = new javax.swing.JLabel();
+        txtGrade = new javax.swing.JTextField();
         imgTacoBell = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -121,7 +131,6 @@ public class NewReminder extends javax.swing.JDialog {
         setMinimumSize(new java.awt.Dimension(800, 800));
         setModal(true);
         setName("New Reminder"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(800, 800));
         setResizable(false);
         setSize(new java.awt.Dimension(800, 800));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -142,35 +151,35 @@ public class NewReminder extends javax.swing.JDialog {
         lblPlan.setForeground(new java.awt.Color(104, 0, 0));
         lblPlan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblPlan.setText("Plan");
-        pnlNewReminder.add(lblPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 190, 30));
+        pnlNewReminder.add(lblPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 190, 30));
 
         lblTitle.setBackground(new java.awt.Color(104, 0, 0));
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(104, 0, 0));
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("Title");
-        pnlNewReminder.add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 190, 30));
+        pnlNewReminder.add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 190, 30));
 
         lblPriority.setBackground(new java.awt.Color(104, 0, 0));
         lblPriority.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         lblPriority.setForeground(new java.awt.Color(104, 0, 0));
         lblPriority.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblPriority.setText("Priority");
-        pnlNewReminder.add(lblPriority, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 190, 30));
+        pnlNewReminder.add(lblPriority, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 380, 190, 30));
 
         lblLocation.setBackground(new java.awt.Color(104, 0, 0));
         lblLocation.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         lblLocation.setForeground(new java.awt.Color(104, 0, 0));
         lblLocation.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblLocation.setText("Location");
-        pnlNewReminder.add(lblLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 190, 30));
+        pnlNewReminder.add(lblLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, 190, 30));
 
         lblDescription.setBackground(new java.awt.Color(104, 0, 0));
         lblDescription.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         lblDescription.setForeground(new java.awt.Color(104, 0, 0));
         lblDescription.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDescription.setText("Description");
-        pnlNewReminder.add(lblDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 470, 190, 60));
+        pnlNewReminder.add(lblDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 470, 190, 60));
 
         cmbPlan.setBackground(new java.awt.Color(104, 0, 0));
         cmbPlan.setMaximumRowCount(2);
@@ -182,7 +191,7 @@ public class NewReminder extends javax.swing.JDialog {
                 cmbPlanActionPerformed(evt);
             }
         });
-        pnlNewReminder.add(cmbPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, 280, 30));
+        pnlNewReminder.add(cmbPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 280, 30));
 
         txtTitle.setBackground(new java.awt.Color(104, 0, 0));
         txtTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
@@ -192,7 +201,7 @@ public class NewReminder extends javax.swing.JDialog {
                 txtTitleActionPerformed(evt);
             }
         });
-        pnlNewReminder.add(txtTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 280, 30));
+        pnlNewReminder.add(txtTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 280, 30));
 
         calDateCalendar.setAlignmentX(0.0F);
         calDateCalendar.setAlignmentY(0.0F);
@@ -200,7 +209,7 @@ public class NewReminder extends javax.swing.JDialog {
         calDateCalendar.setDecorationBackgroundVisible(false);
         calDateCalendar.setName("calDateCalendar"); // NOI18N
         calDateCalendar.setWeekOfYearVisible(false);
-        pnlNewReminder.add(calDateCalendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 430, 200));
+        pnlNewReminder.add(calDateCalendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 430, 200));
 
         cmbPriority.setBackground(new java.awt.Color(104, 0, 0));
         cmbPriority.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NO_PRIORITY", "LOW", "MEDIUM", "HIGH" }));
@@ -210,7 +219,7 @@ public class NewReminder extends javax.swing.JDialog {
                 cmbPriorityActionPerformed(evt);
             }
         });
-        pnlNewReminder.add(cmbPriority, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 390, 280, 30));
+        pnlNewReminder.add(cmbPriority, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 380, 280, 30));
 
         txtLocation.setBackground(new java.awt.Color(104, 0, 0));
         txtLocation.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
@@ -220,7 +229,7 @@ public class NewReminder extends javax.swing.JDialog {
                 txtLocationActionPerformed(evt);
             }
         });
-        pnlNewReminder.add(txtLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 430, 280, 30));
+        pnlNewReminder.add(txtLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 420, 280, 30));
 
         txtaDescription.setBackground(new java.awt.Color(104, 0, 0));
         txtaDescription.setColumns(10);
@@ -231,7 +240,7 @@ public class NewReminder extends javax.swing.JDialog {
         txtaDescription.setBorder(null);
         spnDescription.setViewportView(txtaDescription);
 
-        pnlNewReminder.add(spnDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 471, 280, 60));
+        pnlNewReminder.add(spnDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 470, 280, 60));
 
         btnCancel.setBackground(new java.awt.Color(204, 0, 0));
         btnCancel.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
@@ -241,21 +250,40 @@ public class NewReminder extends javax.swing.JDialog {
                 btnCancelActionPerformed(evt);
             }
         });
-        pnlNewReminder.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 540, 120, 40));
+        pnlNewReminder.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 720, 130, 30));
 
         btnAdd.setBackground(new java.awt.Color(0, 204, 51));
-        btnAdd.setForeground(new java.awt.Color(0, 0, 0));
         btnAdd.setText("ADD");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
             }
         });
-        pnlNewReminder.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 540, 120, 40));
+        pnlNewReminder.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 720, 120, 30));
+
+        lblGrade.setBackground(new java.awt.Color(104, 0, 0));
+        lblGrade.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        lblGrade.setForeground(new java.awt.Color(104, 0, 0));
+        lblGrade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblGrade.setText("Grade");
+        pnlNewReminder.add(lblGrade, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 530, 190, 60));
+
+        txtGrade.setBackground(new java.awt.Color(104, 0, 0));
+        txtGrade.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        txtGrade.setBorder(null);
+        txtGrade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtGradeActionPerformed(evt);
+            }
+        });
+        pnlNewReminder.add(txtGrade, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 540, 280, 30));
 
         imgTacoBell.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         imgTacoBell.setIcon(new javax.swing.ImageIcon(getClass().getResource("/co/edu/konradlorenz/view/img/ding-logo-semitransparent 500x500.png"))); // NOI18N
-        pnlNewReminder.add(imgTacoBell, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 600));
+        imgTacoBell.setMaximumSize(new java.awt.Dimension(800, 800));
+        imgTacoBell.setMinimumSize(new java.awt.Dimension(800, 800));
+        imgTacoBell.setPreferredSize(new java.awt.Dimension(800, 800));
+        pnlNewReminder.add(imgTacoBell, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 800));
 
         getContentPane().add(pnlNewReminder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 800));
 
@@ -283,8 +311,12 @@ public class NewReminder extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-//        control.addReminder();
+        control.addReminder();
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void txtGradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGradeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtGradeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -298,6 +330,7 @@ public class NewReminder extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> cmbPriority;
     private javax.swing.JLabel imgTacoBell;
     private javax.swing.JLabel lblDescription;
+    private javax.swing.JLabel lblGrade;
     private javax.swing.JLabel lblLocation;
     private javax.swing.JLabel lblNewReminder;
     private javax.swing.JLabel lblPlan;
@@ -305,6 +338,7 @@ public class NewReminder extends javax.swing.JDialog {
     private javax.swing.JLabel lblTitle;
     private javax.swing.JPanel pnlNewReminder;
     private javax.swing.JScrollPane spnDescription;
+    private javax.swing.JTextField txtGrade;
     private javax.swing.JTextField txtLocation;
     private javax.swing.JTextField txtTitle;
     private javax.swing.JTextArea txtaDescription;

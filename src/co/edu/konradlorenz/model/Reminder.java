@@ -1,10 +1,10 @@
 package co.edu.konradlorenz.model;
 
-public abstract class Recordatory {
+public abstract class Reminder {
 
     protected String titulo, descripcion, fecha, ubicacion;
     protected Priority prioridad;//DEPENDENCIA
-    public Recordatory(String titulo, String descripcion, String fecha, Priority prioridad, String ubicacion) {
+    public Reminder(String titulo, String descripcion, String fecha, Priority prioridad, String ubicacion) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.fecha = fecha;
@@ -13,7 +13,7 @@ public abstract class Recordatory {
         
     }
 
-    public Recordatory() {
+    public Reminder() {
     }
 
     public String getTitulo() {

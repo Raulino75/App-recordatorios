@@ -2,17 +2,17 @@ package co.edu.konradlorenz.model;
 
 import co.edu.konradlorenz.view.*;
 
-public class RecordatorioBasico extends Recordatory implements TypeAccount {
+public class BasicReminder extends Reminder implements TypeAccount {
 
     private int pago;
 
     
-    public RecordatorioBasico(String titulo, String descripcion, String fecha, Priority prioridad, String ubicacion) {
+    public BasicReminder(String titulo, String descripcion, String fecha, Priority prioridad, String ubicacion) {
         super(titulo, descripcion, fecha, prioridad, ubicacion);
         this.pago = 0;
     }
 
-    public RecordatorioBasico() {
+    public BasicReminder() {
     }
 
     public String descripcion() {

@@ -134,7 +134,6 @@ public class Home extends javax.swing.JFrame {
 
         lblDingLogo.setBackground(new java.awt.Color(237, 189, 178));
         lblDingLogo.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        lblDingLogo.setForeground(new java.awt.Color(0, 0, 0));
         lblDingLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDingLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/co/edu/konradlorenz/view/img/ding-logo 50x50.png"))); // NOI18N
         lblDingLogo.setText("Ding");

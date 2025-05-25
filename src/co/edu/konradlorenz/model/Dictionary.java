@@ -11,7 +11,7 @@ import java.util.Map;
  *
  * @author dulce
  */
-public class HasMap {
+public class Dictionary {
     
     private static Map<String, String> texts_en = new HashMap<>();
     private static Map<String, String> texts_es = new HashMap<>();

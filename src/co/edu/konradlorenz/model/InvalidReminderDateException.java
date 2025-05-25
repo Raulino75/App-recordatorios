@@ -4,14 +4,14 @@
  */
 package co.edu.konradlorenz.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 /**
  *
  * @author dulce
  */
 public class InvalidReminderDateException extends Exception{
-    public InvalidReminderDateException(LocalDateTime dateTime) {
+    public InvalidReminderDateException(LocalDate dateTime) {
         super("The date and time " + dateTime + " is not valid for a reminder.");
     }
 }
