@@ -7,15 +7,9 @@ public class PremiumReminder extends Reminder implements TypeAccount {
     private int pago;
     private int calificaciones;
 
-    public PremiumReminder(String titulo, String descripcion, String fecha, Priority prioridad, String ubicacion,
-            int pago, int calificaciones) {
+    public PremiumReminder(String titulo, String descripcion, String fecha, Priority prioridad, String ubicacion, int calificaciones) {
         super(titulo, descripcion, fecha, prioridad, ubicacion);
         this.pago = 25000;
-        this.calificaciones = calificaciones;
-    }
-
-    public PremiumReminder(int pago, int calificaciones) {
-        this.pago = pago;
         this.calificaciones = calificaciones;
     }
 

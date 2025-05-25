@@ -6,6 +6,7 @@ import java.util.*;
 import java.time.*;
 import java.time.format.*;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 public class Controller {
 
@@ -43,7 +44,8 @@ public class Controller {
             if (date.isBefore(LocalDate.now())) {
 //                throw new InvalidReminderDateException("The date cannot be in the past."); //FIXME:
             }
-            Priority priority = (Priority) home.getNewReminder().getCmbPriority().getSelectedItem();
+
+            Priority priority = Priority.valueOf((String) home.getNewReminder().getCmbPriority().getSelectedItem());
             String location = home.getNewReminder().getTxtLocation().getText();
             boolean esPremium = home.getNewReminder().getCmbPlan().getSelectedItem().equals("PREMIUM") ? true : false;
 
@@ -75,17 +77,18 @@ public class Controller {
 //        } catch (InvalidPriorityException e {
 //
 //        }
+        
     }
 
     public DefaultListModel<String> viewReminders() {
 
         if (remindersList.isEmpty()) {
+
             System.out.println("No reminders are available.");
-            // TODO: Add JPane de advertencia
+            View.mostrarMensaje(null, "No reminders are available.", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
-        home.setLstRemindersList(null); // borra la lista
-
+        // home.setLstRemindersList(null); // borra la lista
         DefaultListModel<String> model = new DefaultListModel<>();
 
         for (Reminder r : remindersList) {
